@@ -1,0 +1,375 @@
+// DATA.JS - Auto-generated from soal.json
+// Edit soal di: data/soal.json
+
+const SOAL_DATA = {
+  "config": {
+    "title": "Bank Soal Ular Tangga Edukasi",
+    "description": "Edit file ini untuk menambah/mengubah soal. Cukup tambah objek baru di kategori yang sesuai.",
+    "format": {
+      "q": "Teks pertanyaan",
+      "opts": ["Pilihan A", "Pilihan B", "Pilihan C", "Pilihan D"],
+      "ans": 0,
+      "exp": "Penjelasan jawaban (ans: 0=A, 1=B, 2=C, 3=D)"
+    }
+  },
+
+  "categories": [
+    {
+      "id": "aritmatika",
+      "name": "Aritmatika Dasar",
+      "icon": "➕",
+      "level": "easy",
+      "soal": [
+        {"q": "15 + 28 = ?", "opts": ["41", "42", "43", "44"], "ans": 2, "exp": "15 + 28 = 43"},
+        {"q": "56 - 19 = ?", "opts": ["35", "36", "37", "38"], "ans": 2, "exp": "56 - 19 = 37"},
+        {"q": "12 × 8 = ?", "opts": ["84", "88", "92", "96"], "ans": 3, "exp": "12 × 8 = 96"},
+        {"q": "144 ÷ 12 = ?", "opts": ["10", "11", "12", "13"], "ans": 2, "exp": "144 ÷ 12 = 12"},
+        {"q": "25 × 4 = ?", "opts": ["90", "95", "100", "105"], "ans": 2, "exp": "25 × 4 = 100"},
+        {"q": "7 × 9 = ?", "opts": ["56", "63", "72", "81"], "ans": 1, "exp": "7 × 9 = 63"},
+        {"q": "100 - 47 = ?", "opts": ["51", "52", "53", "54"], "ans": 2, "exp": "100 - 47 = 53"},
+        {"q": "36 ÷ 6 = ?", "opts": ["5", "6", "7", "8"], "ans": 1, "exp": "36 ÷ 6 = 6"},
+        {"q": "15 × 6 = ?", "opts": ["80", "85", "90", "95"], "ans": 2, "exp": "15 × 6 = 90"},
+        {"q": "81 ÷ 9 = ?", "opts": ["7", "8", "9", "10"], "ans": 2, "exp": "81 ÷ 9 = 9"},
+        {"q": "45 + 38 = ?", "opts": ["81", "82", "83", "84"], "ans": 2, "exp": "45 + 38 = 83"},
+        {"q": "13 × 7 = ?", "opts": ["89", "90", "91", "92"], "ans": 2, "exp": "13 × 7 = 91"},
+        {"q": "200 - 87 = ?", "opts": ["111", "112", "113", "114"], "ans": 2, "exp": "200 - 87 = 113"},
+        {"q": "64 ÷ 8 = ?", "opts": ["6", "7", "8", "9"], "ans": 2, "exp": "64 ÷ 8 = 8"},
+        {"q": "11 × 11 = ?", "opts": ["111", "121", "131", "141"], "ans": 1, "exp": "11 × 11 = 121"},
+        {"q": "72 + 49 = ?", "opts": ["119", "120", "121", "122"], "ans": 2, "exp": "72 + 49 = 121"},
+        {"q": "18 × 5 = ?", "opts": ["80", "85", "90", "95"], "ans": 2, "exp": "18 × 5 = 90"},
+        {"q": "150 ÷ 10 = ?", "opts": ["13", "14", "15", "16"], "ans": 2, "exp": "150 ÷ 10 = 15"},
+        {"q": "9 × 12 = ?", "opts": ["96", "102", "108", "114"], "ans": 2, "exp": "9 × 12 = 108"},
+        {"q": "95 - 38 = ?", "opts": ["55", "56", "57", "58"], "ans": 2, "exp": "95 - 38 = 57"}
+      ]
+    },
+    {
+      "id": "pecahan_persen",
+      "name": "Pecahan & Persen",
+      "icon": "📊",
+      "level": "easy",
+      "soal": [
+        {"q": "Berapa 50% dari 120?", "opts": ["50", "55", "60", "65"], "ans": 2, "exp": "50% × 120 = 60"},
+        {"q": "Berapa 25% dari 200?", "opts": ["25", "50", "75", "100"], "ans": 1, "exp": "25% × 200 = 50"},
+        {"q": "Pecahan 3/4 = ... persen?", "opts": ["25%", "50%", "75%", "80%"], "ans": 2, "exp": "3/4 = 0,75 = 75%"},
+        {"q": "Berapa 10% dari 350?", "opts": ["30", "35", "40", "45"], "ans": 1, "exp": "10% × 350 = 35"},
+        {"q": "1/2 + 1/4 = ?", "opts": ["1/4", "2/4", "3/4", "1"], "ans": 2, "exp": "1/2 + 1/4 = 2/4 + 1/4 = 3/4"},
+        {"q": "Berapa 20% dari 150?", "opts": ["25", "30", "35", "40"], "ans": 1, "exp": "20% × 150 = 30"},
+        {"q": "2/5 = ... persen?", "opts": ["20%", "30%", "40%", "50%"], "ans": 2, "exp": "2/5 = 0,4 = 40%"},
+        {"q": "Berapa 75% dari 80?", "opts": ["50", "55", "60", "65"], "ans": 2, "exp": "75% × 80 = 60"},
+        {"q": "3/8 + 1/8 = ?", "opts": ["1/4", "3/8", "1/2", "5/8"], "ans": 2, "exp": "3/8 + 1/8 = 4/8 = 1/2"},
+        {"q": "Berapa 30% dari 250?", "opts": ["65", "70", "75", "80"], "ans": 2, "exp": "30% × 250 = 75"}
+      ]
+    },
+    {
+      "id": "kpk_fpb",
+      "name": "KPK & FPB",
+      "icon": "🔢",
+      "level": "medium",
+      "soal": [
+        {"q": "KPK dari 8 dan 12 = ?", "opts": ["20", "24", "28", "32"], "ans": 1, "exp": "KPK(8,12) = 24"},
+        {"q": "FPB dari 24 dan 36 = ?", "opts": ["6", "8", "10", "12"], "ans": 3, "exp": "FPB(24,36) = 12"},
+        {"q": "KPK dari 6, 8, dan 12 = ?", "opts": ["20", "22", "24", "26"], "ans": 2, "exp": "KPK(6,8,12) = 24"},
+        {"q": "FPB dari 48 dan 72 = ?", "opts": ["18", "20", "22", "24"], "ans": 3, "exp": "FPB(48,72) = 24"},
+        {"q": "KPK dari 15 dan 20 = ?", "opts": ["50", "55", "60", "65"], "ans": 2, "exp": "KPK(15,20) = 60"},
+        {"q": "FPB dari 36 dan 48 = ?", "opts": ["6", "8", "10", "12"], "ans": 3, "exp": "FPB(36,48) = 12"},
+        {"q": "KPK dari 4 dan 6 = ?", "opts": ["8", "10", "12", "24"], "ans": 2, "exp": "KPK(4,6) = 12"},
+        {"q": "FPB dari 18 dan 27 = ?", "opts": ["3", "6", "9", "12"], "ans": 2, "exp": "FPB(18,27) = 9"},
+        {"q": "KPK dari 9 dan 12 = ?", "opts": ["24", "30", "36", "42"], "ans": 2, "exp": "KPK(9,12) = 36"},
+        {"q": "FPB dari 60 dan 84 = ?", "opts": ["6", "8", "10", "12"], "ans": 3, "exp": "FPB(60,84) = 12"}
+      ]
+    },
+    {
+      "id": "geometri_datar",
+      "name": "Bangun Datar",
+      "icon": "📐",
+      "level": "medium",
+      "soal": [
+        {"q": "Luas persegi panjang p=15, l=8 cm?", "opts": ["100 cm²", "110 cm²", "120 cm²", "130 cm²"], "ans": 2, "exp": "Luas = p × l = 15 × 8 = 120 cm²"},
+        {"q": "Keliling persegi sisi 12 cm?", "opts": ["36 cm", "40 cm", "44 cm", "48 cm"], "ans": 3, "exp": "Keliling = 4 × sisi = 4 × 12 = 48 cm"},
+        {"q": "Luas segitiga alas=16, tinggi=10 cm?", "opts": ["70 cm²", "75 cm²", "80 cm²", "85 cm²"], "ans": 2, "exp": "Luas = ½ × 16 × 10 = 80 cm²"},
+        {"q": "Keliling lingkaran r=7 cm? (π=22/7)", "opts": ["38 cm", "40 cm", "42 cm", "44 cm"], "ans": 3, "exp": "Keliling = 2πr = 2 × 22/7 × 7 = 44 cm"},
+        {"q": "Luas lingkaran d=14 cm? (π=22/7)", "opts": ["144 cm²", "150 cm²", "154 cm²", "160 cm²"], "ans": 2, "exp": "Luas = πr² = 22/7 × 49 = 154 cm²"},
+        {"q": "Luas trapesium a=10, b=16, t=8 cm?", "opts": ["96 cm²", "100 cm²", "104 cm²", "108 cm²"], "ans": 2, "exp": "Luas = ½(a+b)×t = ½×26×8 = 104 cm²"},
+        {"q": "Keliling persegi panjang p=18, l=12 cm?", "opts": ["54 cm", "58 cm", "60 cm", "64 cm"], "ans": 2, "exp": "Keliling = 2(p+l) = 2×30 = 60 cm"},
+        {"q": "Luas persegi sisi 9 cm?", "opts": ["72 cm²", "78 cm²", "81 cm²", "90 cm²"], "ans": 2, "exp": "Luas = 9² = 81 cm²"},
+        {"q": "Luas juring sudut 90°, r=14 cm? (π=22/7)", "opts": ["144 cm²", "150 cm²", "154 cm²", "160 cm²"], "ans": 2, "exp": "Luas = 90/360 × πr² = ¼ × 616 = 154 cm²"},
+        {"q": "Luas belah ketupat d1=12, d2=8 cm?", "opts": ["40 cm²", "44 cm²", "48 cm²", "52 cm²"], "ans": 2, "exp": "Luas = ½ × d1 × d2 = ½ × 12 × 8 = 48 cm²"}
+      ]
+    },
+    {
+      "id": "geometri_ruang",
+      "name": "Bangun Ruang",
+      "icon": "📦",
+      "level": "medium",
+      "soal": [
+        {"q": "Volume kubus sisi 5 cm?", "opts": ["100 cm³", "115 cm³", "125 cm³", "135 cm³"], "ans": 2, "exp": "Volume = s³ = 125 cm³"},
+        {"q": "Volume balok p=8, l=6, t=5 cm?", "opts": ["220 cm³", "230 cm³", "240 cm³", "250 cm³"], "ans": 2, "exp": "Volume = p×l×t = 240 cm³"},
+        {"q": "Luas permukaan kubus sisi 8 cm?", "opts": ["364 cm²", "372 cm²", "384 cm²", "396 cm²"], "ans": 2, "exp": "LP = 6s² = 6×64 = 384 cm²"},
+        {"q": "Volume balok p=12, l=8, t=6 cm?", "opts": ["528 cm³", "552 cm³", "576 cm³", "600 cm³"], "ans": 2, "exp": "Volume = 12×8×6 = 576 cm³"},
+        {"q": "Volume tabung r=7, t=10 cm? (π=22/7)", "opts": ["1520 cm³", "1530 cm³", "1540 cm³", "1550 cm³"], "ans": 2, "exp": "Volume = πr²t = 22/7×49×10 = 1540 cm³"},
+        {"q": "LP balok p=10, l=6, t=4 cm?", "opts": ["238 cm²", "248 cm²", "258 cm²", "268 cm²"], "ans": 1, "exp": "LP = 2(pl+pt+lt) = 2(60+40+24) = 248 cm²"},
+        {"q": "Volume kerucut r=6, t=14 cm? (π=22/7)", "opts": ["518 cm³", "524 cm³", "528 cm³", "532 cm³"], "ans": 2, "exp": "Volume = ⅓πr²t = ⅓×22/7×36×14 = 528 cm³"},
+        {"q": "Volume kubus sisi 7 cm?", "opts": ["333 cm³", "339 cm³", "343 cm³", "349 cm³"], "ans": 2, "exp": "Volume = 7³ = 343 cm³"},
+        {"q": "LP kubus sisi 5 cm?", "opts": ["125 cm²", "140 cm²", "150 cm²", "160 cm²"], "ans": 2, "exp": "LP = 6×25 = 150 cm²"},
+        {"q": "Volume bola r=7 cm? (π=22/7)", "opts": ["1430 cm³", "1437 cm³", "1540 cm³", "1547 cm³"], "ans": 1, "exp": "Volume = 4/3×πr³ = 4/3×22/7×343 ≈ 1437 cm³"}
+      ]
+    },
+    {
+      "id": "pangkat_akar",
+      "name": "Pangkat & Akar",
+      "icon": "√",
+      "level": "medium",
+      "soal": [
+        {"q": "2³ + 3² = ?", "opts": ["15", "16", "17", "18"], "ans": 2, "exp": "8 + 9 = 17"},
+        {"q": "15² - 10² = ?", "opts": ["100", "115", "125", "135"], "ans": 2, "exp": "225 - 100 = 125"},
+        {"q": "4² × 3² = ?", "opts": ["124", "132", "144", "156"], "ans": 2, "exp": "16 × 9 = 144"},
+        {"q": "√144 + √81 = ?", "opts": ["19", "20", "21", "22"], "ans": 2, "exp": "12 + 9 = 21"},
+        {"q": "5³ - 4³ = ?", "opts": ["59", "61", "63", "65"], "ans": 1, "exp": "125 - 64 = 61"},
+        {"q": "20² - 15² = ?", "opts": ["165", "170", "175", "180"], "ans": 2, "exp": "400 - 225 = 175"},
+        {"q": "3⁴ + 2⁵ = ?", "opts": ["103", "109", "113", "119"], "ans": 2, "exp": "81 + 32 = 113"},
+        {"q": "2³ × 3² × 5 = ?", "opts": ["340", "350", "360", "370"], "ans": 2, "exp": "8 × 9 × 5 = 360"},
+        {"q": "√225 - √169 = ?", "opts": ["2", "3", "4", "5"], "ans": 0, "exp": "15 - 13 = 2"},
+        {"q": "6² + 8² - 10² = ?", "opts": ["0", "5", "10", "15"], "ans": 0, "exp": "36 + 64 - 100 = 0"}
+      ]
+    },
+    {
+      "id": "aljabar",
+      "name": "Aljabar",
+      "icon": "🔤",
+      "level": "hard",
+      "soal": [
+        {"q": "Jika 3x + 7 = 22, maka x = ?", "opts": ["3", "4", "5", "6"], "ans": 2, "exp": "3x = 15 → x = 5"},
+        {"q": "Jika 2x - 5 = 13, maka x = ?", "opts": ["7", "8", "9", "10"], "ans": 2, "exp": "2x = 18 → x = 9"},
+        {"q": "Jika 5x + 3 = 2x + 18, maka x = ?", "opts": ["3", "4", "5", "6"], "ans": 2, "exp": "3x = 15 → x = 5"},
+        {"q": "Jika x² = 144, maka x = ?", "opts": ["10", "11", "12", "13"], "ans": 2, "exp": "x = √144 = 12"},
+        {"q": "Jika 4(x + 3) = 32, maka x = ?", "opts": ["3", "4", "5", "6"], "ans": 2, "exp": "x + 3 = 8 → x = 5"},
+        {"q": "Jika 3x - 2y = 10 dan x = 4, maka y = ?", "opts": ["0", "1", "2", "3"], "ans": 1, "exp": "12 - 2y = 10 → y = 1"},
+        {"q": "Jika x + y = 10 dan x - y = 4, maka x = ?", "opts": ["5", "6", "7", "8"], "ans": 2, "exp": "2x = 14 → x = 7"},
+        {"q": "Jika 2(x - 3) = x + 5, maka x = ?", "opts": ["8", "9", "10", "11"], "ans": 3, "exp": "2x - 6 = x + 5 → x = 11"},
+        {"q": "Jika x/3 + 2 = 7, maka x = ?", "opts": ["12", "13", "14", "15"], "ans": 3, "exp": "x/3 = 5 → x = 15"},
+        {"q": "Jika 2x² = 72, maka x = ?", "opts": ["4", "5", "6", "7"], "ans": 2, "exp": "x² = 36 → x = 6"}
+      ]
+    },
+    {
+      "id": "perbandingan",
+      "name": "Perbandingan & Skala",
+      "icon": "⚖️",
+      "level": "hard",
+      "soal": [
+        {"q": "Umur Andi:Budi = 4:7. Budi 21 tahun. Andi = ?", "opts": ["10", "11", "12", "13"], "ans": 2, "exp": "Andi = 4/7 × 21 = 12"},
+        {"q": "Perbandingan p:l = 5:3, keliling 64 cm. p = ?", "opts": ["18 cm", "20 cm", "22 cm", "24 cm"], "ans": 1, "exp": "p+l = 32, p = 5/8 × 32 = 20"},
+        {"q": "Harga 5 buku Rp75.000. Harga 8 buku = ?", "opts": ["Rp110.000", "Rp115.000", "Rp120.000", "Rp125.000"], "ans": 2, "exp": "1 buku = 15.000, 8 = 120.000"},
+        {"q": "Skala 1:500.000. Jarak peta 4 cm = ... km?", "opts": ["15 km", "18 km", "20 km", "25 km"], "ans": 2, "exp": "4 × 500.000 = 2.000.000 cm = 20 km"},
+        {"q": "A:B = 2:3, B:C = 3:5. A:B:C = ?", "opts": ["2:3:4", "2:3:5", "4:6:9", "4:6:10"], "ans": 1, "exp": "B sama = 3, jadi A:B:C = 2:3:5"},
+        {"q": "Umur Ani:Budi = 3:5. Budi 15 tahun. Ani = ?", "opts": ["6", "8", "9", "10"], "ans": 2, "exp": "Ani = 3/5 × 15 = 9"},
+        {"q": "Kecepatan 60 km/jam. Jarak 150 km ditempuh ... jam?", "opts": ["2", "2.5", "3", "3.5"], "ans": 1, "exp": "t = 150/60 = 2,5 jam"},
+        {"q": "Diskon 25%, harga Rp240.000. Bayar = ?", "opts": ["Rp170.000", "Rp175.000", "Rp180.000", "Rp185.000"], "ans": 2, "exp": "Diskon 60.000, bayar 180.000"},
+        {"q": "Diskon 20%, harga Rp150.000. Bayar = ?", "opts": ["Rp100.000", "Rp110.000", "Rp120.000", "Rp130.000"], "ans": 2, "exp": "Diskon 30.000, bayar 120.000"},
+        {"q": "Bunga 5%/tahun, modal Rp2.000.000. Bunga 1 tahun = ?", "opts": ["Rp80.000", "Rp90.000", "Rp100.000", "Rp110.000"], "ans": 2, "exp": "5% × 2.000.000 = 100.000"}
+      ]
+    },
+    {
+      "id": "statistika",
+      "name": "Statistika",
+      "icon": "📈",
+      "level": "hard",
+      "soal": [
+        {"q": "Rata-rata 12, 15, 18, 21, 24 = ?", "opts": ["16", "17", "18", "19"], "ans": 2, "exp": "90 ÷ 5 = 18"},
+        {"q": "Rata-rata 15, 20, 25, 30, 35, 40, 45 = ?", "opts": ["28", "29", "30", "31"], "ans": 2, "exp": "210 ÷ 7 = 30"},
+        {"q": "Median dari 3, 5, 7, 9, 11 = ?", "opts": ["5", "6", "7", "8"], "ans": 2, "exp": "Data tengah = 7"},
+        {"q": "Modus dari 2, 3, 3, 5, 5, 5, 7 = ?", "opts": ["2", "3", "5", "7"], "ans": 2, "exp": "5 muncul paling sering (3×)"},
+        {"q": "Rata-rata 25, 30, 35, 40, 45, 50 = ?", "opts": ["35", "37.5", "40", "42.5"], "ans": 1, "exp": "225 ÷ 6 = 37,5"},
+        {"q": "Jangkauan dari 4, 7, 2, 9, 5 = ?", "opts": ["5", "6", "7", "8"], "ans": 2, "exp": "9 - 2 = 7"},
+        {"q": "Rata-rata 5 data = 8. Jumlah semua data = ?", "opts": ["35", "38", "40", "45"], "ans": 2, "exp": "Jumlah = rata-rata × n = 8 × 5 = 40"},
+        {"q": "Median dari 2, 4, 6, 8 = ?", "opts": ["4", "5", "6", "7"], "ans": 1, "exp": "Median = (4+6)/2 = 5"},
+        {"q": "Rata-rata 6 data = 12. Ditambah data 19. Rata-rata baru = ?", "opts": ["12", "13", "14", "15"], "ans": 1, "exp": "Total = 72+19 = 91, rata-rata = 91/7 = 13"},
+        {"q": "Rata-rata 8, 6, 10, 4, 12 = ?", "opts": ["6", "7", "8", "9"], "ans": 2, "exp": "40 ÷ 5 = 8"}
+      ]
+    },
+    {
+      "id": "operasi_campuran",
+      "name": "Operasi Campuran & HOTS",
+      "icon": "🧠",
+      "level": "hard",
+      "soal": [
+        {"q": "(8 + 12) × (15 - 7) = ?", "opts": ["150", "155", "160", "165"], "ans": 2, "exp": "20 × 8 = 160"},
+        {"q": "(15 + 25) ÷ (8 - 3) = ?", "opts": ["6", "7", "8", "9"], "ans": 2, "exp": "40 ÷ 5 = 8"},
+        {"q": "Luas lingkaran keliling 88 cm? (π=22/7)", "opts": ["606 cm²", "612 cm²", "616 cm²", "620 cm²"], "ans": 2, "exp": "r = 14, Luas = πr² = 616 cm²"},
+        {"q": "Bilangan prima antara 30-40?", "opts": ["31, 33, 37", "31, 37", "33, 37, 39", "31, 35, 37"], "ans": 1, "exp": "31 dan 37"},
+        {"q": "16 × 4 + 12 ÷ 3 = ?", "opts": ["64", "66", "68", "70"], "ans": 2, "exp": "64 + 4 = 68"},
+        {"q": "5 × (3 + 7) - 2² = ?", "opts": ["44", "46", "48", "50"], "ans": 1, "exp": "5×10 - 4 = 46"},
+        {"q": "120 ÷ (4 × 3) + 15 = ?", "opts": ["23", "24", "25", "26"], "ans": 2, "exp": "120÷12 + 15 = 10+15 = 25"},
+        {"q": "Suhu naik 3°C/jam. Dari -5°C, setelah 4 jam = ?", "opts": ["5°C", "7°C", "8°C", "12°C"], "ans": 1, "exp": "-5 + (3×4) = -5 + 12 = 7°C"},
+        {"q": "Pola: 2, 6, 18, 54, ... Suku ke-5 = ?", "opts": ["108", "126", "162", "180"], "ans": 2, "exp": "×3 setiap suku. 54×3 = 162"},
+        {"q": "Pola: 1, 4, 9, 16, 25, ... Suku ke-7 = ?", "opts": ["36", "42", "49", "56"], "ans": 2, "exp": "Pola kuadrat: 7² = 49"}
+      ]
+    },
+    {
+      "id": "urutan_langkah",
+      "name": "Urutan Langkah Penyelesaian",
+      "icon": "📋",
+      "level": "medium",
+      "sub_level": "hots",
+      "tags": ["urutan", "logika", "problem-solving"],
+      "target": "Kelas 5-7",
+      "soal": [
+        {
+          "q": "Urutkan langkah menyelesaikan: 3x + 5 = 20",
+          "type": "sequence",
+          "steps": ["Tulis persamaan: 3x + 5 = 20", "Kurangi kedua ruas dengan 5: 3x = 15", "Bagi kedua ruas dengan 3: x = 5", "Cek: 3(5) + 5 = 20 ✓"],
+          "exp": "Langkah aljabar: isolasi variabel dengan operasi invers."
+        },
+        {
+          "q": "Urutkan langkah menghitung luas lingkaran (r = 7 cm, π = 22/7):",
+          "type": "sequence",
+          "steps": ["Tulis rumus: L = π × r²", "Substitusi: L = 22/7 × 7²", "Hitung r²: 7² = 49", "Hitung: 22/7 × 49 = 154 cm²"],
+          "exp": "Luas lingkaran = πr². Selalu hitung pangkat dulu baru kalikan."
+        },
+        {
+          "q": "Urutkan langkah mencari KPK dari 12 dan 18:",
+          "type": "sequence",
+          "steps": ["Faktorisasi 12 = 2² × 3", "Faktorisasi 18 = 2 × 3²", "Ambil pangkat tertinggi tiap faktor", "KPK = 2² × 3² = 4 × 9 = 36"],
+          "exp": "KPK = hasil kali faktor prima dengan pangkat tertinggi."
+        },
+        {
+          "q": "Urutkan langkah menghitung volume tabung (r=7, t=10):",
+          "type": "sequence",
+          "steps": ["Tulis rumus: V = π × r² × t", "Hitung r²: 7² = 49", "Kalikan: 22/7 × 49 = 154", "Kalikan tinggi: 154 × 10 = 1540 cm³"],
+          "exp": "Volume tabung = πr²t. Kerjakan bertahap dari dalam."
+        },
+        {
+          "q": "Urutkan langkah menghitung diskon 25% dari Rp200.000:",
+          "type": "sequence",
+          "steps": ["Tentukan persen diskon: 25%", "Hitung diskon: 25/100 × 200.000 = 50.000", "Kurangi dari harga: 200.000 - 50.000", "Harga akhir: Rp150.000"],
+          "exp": "Diskon = persen × harga. Harga akhir = harga - diskon."
+        },
+        {
+          "q": "Urutkan langkah konversi pecahan 3/8 ke desimal:",
+          "type": "sequence",
+          "steps": ["Bagi pembilang dengan penyebut: 3 ÷ 8", "3 ÷ 8 = 0,375", "Verifikasi: 0,375 × 8 = 3 ✓"],
+          "exp": "Pecahan ke desimal: bagi pembilang dengan penyebut."
+        },
+        {
+          "q": "Urutkan langkah menyelesaikan: 2(x + 4) = 16",
+          "type": "sequence",
+          "steps": ["Bagi kedua ruas dengan 2: x + 4 = 8", "Kurangi kedua ruas dengan 4: x = 4", "Cek: 2(4 + 4) = 2(8) = 16 ✓"],
+          "exp": "Bisa juga distribusi dulu: 2x + 8 = 16, tapi bagi dulu lebih cepat."
+        },
+        {
+          "q": "Urutkan langkah mencari rata-rata dari 5, 8, 12, 15:",
+          "type": "sequence",
+          "steps": ["Jumlahkan semua data: 5 + 8 + 12 + 15 = 40", "Hitung banyak data: n = 4", "Bagi jumlah dengan n: 40 ÷ 4", "Rata-rata = 10"],
+          "exp": "Rata-rata = jumlah data ÷ banyak data."
+        }
+      ]
+    }
+  ]
+}
+;
+
+const BOARD_CONFIG = {
+  "boardSize": 100,
+  "layout": "zigzag",
+  "snakes": [
+    {
+      "from": 99,
+      "to": 41,
+      "label": "Ular Besar"
+    },
+    {
+      "from": 89,
+      "to": 53,
+      "label": "Ular Medium"
+    },
+    {
+      "from": 76,
+      "to": 58,
+      "label": "Ular Kecil"
+    },
+    {
+      "from": 62,
+      "to": 19,
+      "label": "Ular Panjang"
+    },
+    {
+      "from": 47,
+      "to": 26,
+      "label": "Ular"
+    },
+    {
+      "from": 33,
+      "to": 3,
+      "label": "Ular"
+    },
+    {
+      "from": 25,
+      "to": 5,
+      "label": "Ular Pendek"
+    }
+  ],
+  "ladders": [
+    {
+      "from": 2,
+      "to": 23,
+      "label": "Tangga Emas"
+    },
+    {
+      "from": 8,
+      "to": 34,
+      "label": "Tangga Panjang"
+    },
+    {
+      "from": 20,
+      "to": 77,
+      "label": "Tangga Besar"
+    },
+    {
+      "from": 32,
+      "to": 68,
+      "label": "Tangga"
+    },
+    {
+      "from": 41,
+      "to": 79,
+      "label": "Tangga"
+    },
+    {
+      "from": 50,
+      "to": 91,
+      "label": "Tangga"
+    },
+    {
+      "from": 71,
+      "to": 92,
+      "label": "Tangga Kecil"
+    }
+  ],
+  "questionTiles": [
+    5,
+    12,
+    18,
+    24,
+    29,
+    35,
+    42,
+    48,
+    55,
+    61,
+    67,
+    74,
+    80,
+    87,
+    93
+  ],
+  "powerupTiles": [
+    7,
+    15,
+    28,
+    40,
+    52,
+    65,
+    78,
+    90
+  ],
+  "finishTile": 100
+};

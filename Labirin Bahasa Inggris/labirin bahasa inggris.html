@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>Labirin Pengetahuan - EduPortal</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/edu-theme.css">
+<link rel="stylesheet" href="../shared/edu-projector.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Nunito',sans-serif}
+h1,h2,h3,.tf{font-family:'Fredoka',sans-serif}
+html,body{height:100%;overflow:hidden}
+body{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);color:#2d3436}
+#app{height:100%;width:100%;display:flex;flex-direction:column}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes bounce-in{0%{transform:scale(0.3);opacity:0}50%{transform:scale(1.05)}100%{transform:scale(1);opacity:1}}
+@keyframes slide-up{from{transform:translateY(30px);opacity:0}to{transform:translateY(0);opacity:1}}
+@keyframes glow-pulse{0%,100%{opacity:0.7}50%{opacity:1}}
+@keyframes streak-glow{0%,100%{text-shadow:0 0 5px rgba(255,215,0,0.5)}50%{text-shadow:0 0 20px rgba(255,215,0,1)}}
+@keyframes confetti-fall{0%{transform:translateY(-100vh) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+.float-anim{animation:float 3s ease-in-out infinite}
+.bounce-in{animation:bounce-in 0.5s ease-out}
+.slide-up{animation:slide-up 0.4s ease-out}
+.streak-glow{animation:streak-glow 1s ease-in-out infinite}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(108,92,231,0.4);border-radius:3px}
+.screen{height:100%;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;overflow-y:auto}
+.screen-inner{max-width:560px;width:100%;text-align:center}
+.card{background:rgba(255,255,255,0.97);border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,0.15);border:2px solid #f0e8ff;padding:32px;width:100%;max-width:560px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 32px;border-radius:16px;font-weight:700;font-size:1rem;border:none;cursor:pointer;font-family:inherit;transition:all 0.2s;text-decoration:none}
+.btn:active{transform:scale(0.96)}
+.btn-primary{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;box-shadow:0 6px 20px rgba(102,126,234,0.3)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(102,126,234,0.5)}
+.btn-secondary{background:linear-gradient(135deg,#f093fb 0%,#f5576c 100%);color:#fff}
+.btn-ghost{background:rgba(255,255,255,0.1);color:#fff;border:2px solid rgba(255,255,255,0.25);padding:10px 20px;border-radius:12px;font-weight:700;cursor:pointer;font-family:inherit;transition:all 0.2s;text-decoration:none;font-size:0.85rem;display:inline-flex;align-items:center;gap:6px}
+.btn-ghost:hover{background:rgba(255,255,255,0.2)}
+.btn-sm{padding:10px 18px;font-size:0.85rem;border-radius:12px}
+.btn-block{width:100%;display:flex}
+.btn-outline{background:transparent;border:2px solid #e0d6f0;color:#666;padding:12px 20px;border-radius:12px;font-weight:700;cursor:pointer;font-family:inherit;transition:all 0.2s}
+.btn-outline:hover{border-color:#667eea;color:#667eea}
+.tag{display:inline-flex;align-items:center;gap:4px;background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.9);padding:8px 14px;border-radius:50px;font-size:0.75rem;font-weight:700;border:1px solid rgba(255,255,255,0.1)}
+.tag-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0}
+.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:16px 0}
+.team-box{border-radius:16px;padding:16px;border:2px solid;text-align:center}
+.team-box input{width:100%;padding:10px 14px;border-radius:12px;border:2px solid #e8e0f0;text-align:center;font-weight:700;font-family:inherit;font-size:0.95rem;outline:none}
+.team-box input:focus{border-color:#667eea}
+.num-btns{display:flex;gap:8px;justify-content:center;margin:12px 0}
+.num-btn{width:50px;height:50px;border-radius:14px;font-weight:700;font-size:1.1rem;border:2px solid #e8e0f0;background:#f8f5ff;color:#555;cursor:pointer;transition:all 0.2s;font-family:inherit}
+.num-btn.active{background:#667eea;color:#fff;border-color:#667eea;transform:scale(1.1);box-shadow:0 4px 12px rgba(102,126,234,0.3)}
+.char-grid{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:10px}
+.char-btn{width:44px;height:44px;border-radius:12px;font-size:1.4rem;border:2px solid #e8e0f0;background:#fff;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center}
+.char-btn.active{background:#667eea;border-color:#667eea;transform:scale(1.15);box-shadow:0 4px 12px rgba(102,126,234,0.3)}
+.rule-item{display:flex;gap:12px;align-items:flex-start;background:#f8f5ff;padding:12px 16px;border-radius:14px;margin-bottom:8px;text-align:left}
+.ri-icon{font-size:1.3rem;flex-shrink:0}
+.ri-title{font-weight:700;color:#333;font-size:0.85rem}
+.ri-desc{color:#777;font-size:0.78rem;margin-top:2px}
+.dur-btn{width:100%;padding:14px 20px;border-radius:14px;font-weight:700;font-size:1rem;border:2px solid #e8e0f0;background:#f8f5ff;color:#555;cursor:pointer;transition:all 0.2s;font-family:inherit;display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.dur-btn.active{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border-color:transparent;transform:scale(1.02);box-shadow:0 6px 20px rgba(102,126,234,0.3)}
+.fog-toggle{display:flex;align-items:center;justify-content:center;gap:10px;margin:16px 0}
+.fog-toggle input{width:18px;height:18px;accent-color:#667eea}
+.maze-screen{height:100%;width:100%;display:flex;flex-direction:column;overflow:hidden}
+.maze-topbar{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:rgba(0,0,0,0.35);flex-shrink:0}
+.timer{color:#fff;font-weight:700;font-size:1.1rem}.timer.danger{color:#ff6b6b}
+.team-info{display:flex;align-items:center;gap:6px;color:#fff;font-weight:700;font-size:0.85rem}
+.top-btns{display:flex;gap:8px}
+.top-btns button{background:none;border:none;color:rgba(255,255,255,0.7);font-size:1.2rem;cursor:pointer;padding:4px}
+.top-btns button:hover{color:#fff}
+.maze-teambar{display:flex;gap:6px;padding:6px 12px;justify-content:center;flex-wrap:wrap;background:rgba(0,0,0,0.2);flex-shrink:0}
+.tb{display:flex;align-items:center;gap:4px;padding:4px 10px;border-radius:10px;font-size:0.75rem;font-weight:700;color:#fff;cursor:pointer;transition:all 0.15s;border:2px solid transparent}
+.tb.active{border-color:#fff;transform:scale(1.05)}
+.maze-pubar{display:flex;align-items:center;justify-content:center;gap:8px;padding:6px 12px;background:rgba(0,0,0,0.15);flex-shrink:0}
+.pu-label{color:rgba(255,255,255,0.5);font-size:0.7rem;font-weight:700}
+.pu-slot{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,0.08);border:2px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:1.1rem;cursor:pointer;transition:all 0.2s}
+.pu-slot:hover{transform:scale(1.1);border-color:#ffd93d}
+.pu-empty{color:rgba(255,255,255,0.3);font-size:0.7rem}
+.maze-area{flex:1;display:flex;align-items:center;justify-content:center;padding:8px;overflow:auto;min-height:0}
+.maze-wrap{background:rgba(0,0,0,0.4);backdrop-filter:blur(8px);border-radius:16px;padding:8px;border:2px solid rgba(108,92,231,0.3);display:inline-block}
+.maze-grid{display:grid;gap:1px}
+.mc{display:flex;align-items:center;justify-content:center;font-size:0.55rem;font-weight:700;border-radius:2px;position:relative;width:26px;height:26px}
+.mc-wall{background:#1a1a2e;border:1px solid #252545}
+.mc-path{background:#2a2a4a;border:1px solid #3a3a5a}
+.mc-q{background:linear-gradient(135deg,#ff8c42,#ff6b35);animation:glow-pulse 2s infinite}
+.mc-exit{background:linear-gradient(135deg,#00b894,#55efc4)}
+.mc-fog{background:#0a0a14!important;border-color:#0a0a14!important}
+.mc-fog *{display:none!important}
+.pm{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:0.85rem;z-index:10;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.6));line-height:1}
+.pm.multi{font-size:0.5rem}
+.maze-controls{display:flex;align-items:center;justify-content:center;padding:8px 0 12px;flex-shrink:0}
+.dpad{display:grid;grid-template-areas:". up ." "left center right" ". down .";grid-template-columns:50px 50px 50px;grid-template-rows:50px 50px 50px;gap:4px}
+.dpad-btn{width:50px;height:50px;border-radius:14px;background:rgba(255,255,255,0.12);border:2px solid rgba(255,255,255,0.2);color:#fff;font-size:1.2rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.1s;user-select:none;-webkit-user-select:none;touch-action:manipulation}
+.dpad-btn:active{background:rgba(102,126,234,0.5);transform:scale(0.9);border-color:#667eea}
+.dpad-up{grid-area:up}.dpad-down{grid-area:down}.dpad-left{grid-area:left}.dpad-right{grid-area:right}
+.dpad-center{grid-area:center;background:rgba(255,255,255,0.05);border-color:transparent;cursor:default;font-size:1.3rem}
+.q-screen{height:100%;width:100%;display:flex;align-items:center;justify-content:center;padding:16px;overflow-y:auto}
+.q-card{background:rgba(255,255,255,0.97);border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,0.2);border:2px solid #f0e8ff;padding:24px;width:100%;max-width:520px}
+.q-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.q-badges{display:flex;gap:6px;flex-wrap:wrap}
+.q-badge{padding:4px 10px;border-radius:50px;font-size:0.7rem;font-weight:700;color:#fff}
+.q-timer{font-weight:700;font-size:1.2rem;color:#333}.q-timer.danger{color:#e17055}
+.q-team{display:flex;align-items:center;gap:8px;padding-bottom:12px;margin-bottom:12px;border-bottom:1px solid #f0e8ff}
+.qt-char{font-size:1.5rem}.qt-name{font-weight:700;color:#333;font-size:0.9rem}
+.qt-combo{background:#fff3e0;color:#e65100;font-size:0.7rem;font-weight:700;padding:3px 8px;border-radius:50px}
+.q-text{font-size:1.05rem;font-weight:700;color:#222;line-height:1.5;margin-bottom:18px}
+.q-opts{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
+.opt-btn{display:flex;align-items:center;gap:12px;padding:13px 16px;border-radius:14px;border:2px solid #e8e0f0;background:#fff;font-weight:600;color:#333;cursor:pointer;transition:all 0.2s;font-family:inherit;font-size:0.9rem;text-align:left;width:100%}
+.opt-btn:hover{border-color:#667eea;background:#f8f5ff;transform:translateX(4px)}
+.opt-btn.disabled{opacity:0.3;pointer-events:none}
+.opt-letter{width:28px;height:28px;border-radius:9px;background:#f0e8ff;color:#667eea;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.75rem;flex-shrink:0}
+.q-actions{display:flex;gap:8px;flex-wrap:wrap}
+.q-actions button{flex:1;min-width:80px;padding:12px 14px;border-radius:12px;font-weight:700;font-size:0.8rem;border:2px solid;cursor:pointer;font-family:inherit;transition:all 0.2s}
+.q-act-skip{background:#e3f2fd;color:#1565c0;border-color:#bbdefb}
+.q-act-hint{background:#fff8e1;color:#f57f17;border-color:#fff176}
+.q-act-surr{background:#f5f5f5;color:#666;border-color:#e0e0e0}
+.fb-icon{font-size:4rem;margin-bottom:12px}
+.fb-title{font-size:1.8rem;font-weight:700;margin-bottom:4px}
+.fb-sub{font-size:1rem;color:#666;margin-bottom:16px}
+.fb-explain{background:#e3f2fd;border-left:4px solid #1976d2;padding:14px 16px;border-radius:0 12px 12px 0;margin-bottom:14px;text-align:left}
+.fb-el{font-weight:700;color:#1565c0;font-size:0.8rem;margin-bottom:4px}
+.fb-et{color:#333;font-size:0.85rem;line-height:1.5}
+.fb-answer{background:#f5f5f5;padding:12px 16px;border-radius:12px;margin-bottom:16px;text-align:left;font-size:0.85rem}
+.fba-q{color:#666;margin-bottom:4px}.fba-a{color:#2e7d32;font-weight:700}
+.sb-row{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-radius:14px;margin-bottom:8px}
+.sb-left{display:flex;align-items:center;gap:10px}
+.sb-rank{font-size:1rem;font-weight:700;color:#999}
+.sb-name{font-weight:700;color:#333;font-size:0.9rem}
+.sb-stats{font-size:0.7rem;color:#999;margin-top:2px}
+.sb-score{font-weight:700;font-size:1.2rem}
+.win-ranks{background:#f8f5ff;border-radius:16px;padding:16px;margin:16px 0;text-align:left}
+.win-rank-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #f0e8ff}
+.win-rank-row:last-child{border-bottom:none}
+.win-rank-left{display:flex;align-items:center;gap:8px}
+.win-rank-score{font-weight:700}.win-rank-sub{font-size:0.7rem;color:#999}
+.pause-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;z-index:9999}
+.pause-box{background:#fff;border-radius:20px;padding:32px;text-align:center;max-width:320px;width:90%}
+.pause-box h2{font-family:'Fredoka',sans-serif;font-size:1.8rem;color:#667eea;margin-bottom:12px}
+.pause-box p{color:#666;margin-bottom:20px}
+.pause-btns{display:flex;flex-direction:column;gap:10px}
+.toast{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.88);color:#fff;padding:12px 24px;border-radius:50px;font-weight:700;font-size:0.82rem;z-index:10000;pointer-events:none;animation:slide-up 0.3s ease-out;white-space:nowrap}
+.confetti-piece{position:fixed;width:10px;height:10px;animation:confetti-fall 3s linear forwards;z-index:9998;pointer-events:none}
+@media(max-width:600px){.mc{width:18px;height:18px;font-size:0.4rem}.pm{font-size:0.6rem}.pm.multi{font-size:0.4rem}.card{padding:20px}.q-card{padding:18px}.dpad{grid-template-columns:46px 46px 46px;grid-template-rows:46px 46px 46px}.dpad-btn{width:46px;height:46px}}
+@media(max-width:400px){.mc{width:14px;height:14px}.pm{font-size:0.5rem}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div id="toast-container"></div>
+<script>
+// SOUND
+class SoundEngine{constructor(){this.ctx=null;this.enabled=true}init(){if(this.ctx)return;try{this.ctx=new(window.AudioContext||window.webkitAudioContext)()}catch(e){}}play(type){if(!this.enabled||!this.ctx)return;var now=this.ctx.currentTime,osc=this.ctx.createOscillator(),gain=this.ctx.createGain();osc.connect(gain);gain.connect(this.ctx.destination);switch(type){case'move':osc.frequency.setValueAtTime(300,now);osc.frequency.exponentialRampToValueAtTime(400,now+0.05);gain.gain.setValueAtTime(0.06,now);gain.gain.exponentialRampToValueAtTime(0.001,now+0.08);osc.start(now);osc.stop(now+0.08);break;case'correct':osc.frequency.setValueAtTime(523,now);osc.frequency.setValueAtTime(659,now+0.1);osc.frequency.setValueAtTime(784,now+0.2);gain.gain.setValueAtTime(0.12,now);gain.gain.exponentialRampToValueAtTime(0.001,now+0.4);osc.start(now);osc.stop(now+0.4);break;case'wrong':osc.type='sawtooth';osc.frequency.setValueAtTime(200,now);osc.frequency.exponentialRampToValueAtTime(100,now+0.3);gain.gain.setValueAtTime(0.1,now);gain.gain.exponentialRampToValueAtTime(0.001,now+0.3);osc.start(now);osc.stop(now+0.3);break;case'powerup':osc.frequency.setValueAtTime(400,now);osc.frequency.exponentialRampToValueAtTime(1200,now+0.3);gain.gain.setValueAtTime(0.1,now);gain.gain.exponentialRampToValueAtTime(0.001,now+0.35);osc.start(now);osc.stop(now+0.35);break;case'finish':osc.frequency.setValueAtTime(523,now);osc.frequency.setValueAtTime(784,now+0.15);osc.frequency.setValueAtTime(1047,now+0.3);gain.gain.setValueAtTime(0.15,now);gain.gain.exponentialRampToValueAtTime(0.001,now+0.5);osc.start(now);osc.stop(now+0.5);break;case'tick':osc.frequency.setValueAtTime(800,now);gain.gain.setValueAtTime(0.03,now);gain.gain.exponentialRampToValueAtTime(0.001,now+0.04);osc.start(now);osc.stop(now+0.04);break;case'combo':osc.type='triangle';osc.frequency.setValueAtTime(600,now);osc.frequency.exponentialRampToValueAtTime(1200,now+0.2);gain.gain.setValueAtTime(0.12,now);gain.gain.exponentialRampToValueAtTime(0.001,now+0.25);osc.start(now);osc.stop(now+0.25);break}}}
+var sound=new SoundEngine();
+
+// QUESTIONS
+var questions={easy:[{q:"What is the biggest land animal?",opts:["Elephant","Giraffe","Lion","Bear"],ans:0,cat:"Kelas 5",exp:"Gajah adalah hewan darat terbesar!"},{q:"The giraffe is the ___ animal.",opts:["tallest","shortest","smallest","fastest"],ans:0,cat:"Kelas 5",exp:"Jerapah paling tinggi!"},{q:"Which animal is the fastest?",opts:["Cheetah","Elephant","Turtle","Dog"],ans:0,cat:"Kelas 5",exp:"Cheetah berlari 120 km/jam!"},{q:"The turtle is ___ than the rabbit.",opts:["slower","faster","bigger","taller"],ans:0,cat:"Kelas 5",exp:"Kura-kura lebih lambat."},{q:"An elephant is ___ than a cat.",opts:["bigger","smaller","thinner","shorter"],ans:0,cat:"Kelas 5",exp:"Gajah lebih besar dari kucing!"},{q:"A pilot flies a ___.",opts:["plane","car","boat","train"],ans:0,cat:"Kelas 6",exp:"Pilot menerbangkan pesawat."},{q:"A doctor works in a ___.",opts:["hospital","school","airport","market"],ans:0,cat:"Kelas 6",exp:"Dokter bekerja di rumah sakit."},{q:"A teacher works in a ___.",opts:["school","hospital","airport","farm"],ans:0,cat:"Kelas 6",exp:"Guru mengajar di sekolah."},{q:"Students study in a ___.",opts:["classroom","kitchen","bedroom","bathroom"],ans:0,cat:"Kelas 7",exp:"Classroom = ruang kelas."},{q:"We borrow books from the ___.",opts:["library","canteen","field","toilet"],ans:0,cat:"Kelas 7",exp:"Library = perpustakaan."},{q:"We eat lunch in the ___.",opts:["canteen","library","lab","office"],ans:0,cat:"Kelas 7",exp:"Canteen = kantin."},{q:"The principal works in the ___.",opts:["office","canteen","field","lab"],ans:0,cat:"Kelas 7",exp:"Kepsek di kantor."},{q:"PE class is held on the ___.",opts:["field","classroom","library","lab"],ans:0,cat:"Kelas 7",exp:"Olahraga di lapangan."},{q:"'Ruang kelas' in English is ___.",opts:["classroom","bedroom","bathroom","kitchen"],ans:0,cat:"Kelas 7",exp:"Classroom = ruang kelas."},{q:"The color of the sky is ___.",opts:["blue","red","green","black"],ans:0,cat:"Kelas 5",exp:"Sky = blue."}],medium:[{q:"The elephant is bigger ___ the horse.",opts:["than","then","that","this"],ans:0,cat:"Kelas 5",exp:"'than' untuk perbandingan."},{q:"Which uses comparative correctly?",opts:["A cat is smaller than a dog","A cat is small than a dog","A cat is more small","A cat is smallest than"],ans:0,cat:"Kelas 5",exp:"smaller + than."},{q:"The superlative of 'tall' is ___.",opts:["tallest","taller","more tall","most tall"],ans:0,cat:"Kelas 5",exp:"Kata pendek: -est."},{q:"Choose the correct sentence:",opts:["The blue whale is the heaviest animal","The blue whale is more heavy","The blue whale is heavier animal","The blue whale is most heavy"],ans:0,cat:"Kelas 5",exp:"heavy -> heaviest."},{q:"'More beautiful' because it has ___ syllables.",opts:["3 or more","1","2","0"],ans:0,cat:"Kelas 5",exp:"3+ suku kata: more/most."},{q:"The comparative of 'big' is ___.",opts:["bigger","biggest","more big","most big"],ans:0,cat:"Kelas 5",exp:"big -> bigger."},{q:"The cheetah is ___ than the lion.",opts:["faster","fastest","more fast","most fast"],ans:0,cat:"Kelas 5",exp:"fast -> faster."},{q:"The superlative of 'dangerous' is ___.",opts:["most dangerous","dangeroust","more dangerous","dangerousest"],ans:0,cat:"Kelas 5",exp:"3+ suku: most dangerous."},{q:"She ___ to be a doctor.",opts:["wants","want","wanting","wanted"],ans:0,cat:"Kelas 6",exp:"She -> wants (+s)."},{q:"A pilot needs to be ___.",opts:["brave","lazy","sleepy","angry"],ans:0,cat:"Kelas 6",exp:"Pilot harus berani."},{q:"'What do you want to be?' Answer:",opts:["I want to be a teacher","I am want teacher","I wanting be teacher","I to be want teacher"],ans:0,cat:"Kelas 6",exp:"I + want + to be + a + profesi."},{q:"Which profession helps animals?",opts:["Veterinarian","Pilot","Chef","Lawyer"],ans:0,cat:"Kelas 6",exp:"Veterinarian = dokter hewan."},{q:"He ___ in a restaurant.",opts:["works","work","working","worked"],ans:0,cat:"Kelas 6",exp:"He -> works (+s)."},{q:"An astronaut travels to ___.",opts:["space","sea","forest","desert"],ans:0,cat:"Kelas 6",exp:"Astronot ke luar angkasa."},{q:"A nurse ___ patients.",opts:["takes care of","teaches","flies","cooks for"],ans:0,cat:"Kelas 6",exp:"Perawat merawat pasien."},{q:"There ___ twenty classrooms.",opts:["are","is","am","was"],ans:0,cat:"Kelas 7",exp:"Twenty (plural) -> are."},{q:"The library is ___ the second floor.",opts:["on","in","at","to"],ans:0,cat:"Kelas 7",exp:"'on' untuk lantai."},{q:"My school ___ a big field.",opts:["has","have","having","had"],ans:0,cat:"Kelas 7",exp:"My school (singular) -> has."},{q:"The lab is ___ to the library.",opts:["next","near","beside","front"],ans:0,cat:"Kelas 7",exp:"next to = berdekatan."},{q:"Students must be ___ in the library.",opts:["quiet","loud","noisy","running"],ans:0,cat:"Kelas 7",exp:"Perpustakaan harus tenang."},{q:"The office is ___ the 1st and 2nd floor.",opts:["between","on","in","at"],ans:0,cat:"Kelas 7",exp:"between = di antara."},{q:"How many ___ are there?",opts:["buildings","building","builded","builds"],ans:0,cat:"Kelas 7",exp:"How many + plural."},{q:"We play basketball on the ___.",opts:["court","classroom","library","canteen"],ans:0,cat:"Kelas 7",exp:"Court = lapangan basket."},{q:"We do experiments in the ___.",opts:["laboratory","library","canteen","field"],ans:0,cat:"Kelas 7",exp:"Lab untuk percobaan."},{q:"There is a canteen ___ the school.",opts:["behind","on","at","to"],ans:0,cat:"Kelas 7",exp:"behind = di belakang."}],hard:[{q:"Correct comparative form?",opts:["Cheetah faster horse","Cheetah is faster horse","The cheetah is faster than the horse","The cheetah is fastest than horse"],ans:2,cat:"Kelas 5",exp:"Subject + is + adj-er + than + noun."},{q:"Superlative for ONE-syllable words?",opts:["Add 'more' before","Add '-est' after","Add '-er' to end","Add 'most' before"],ans:1,cat:"Kelas 5",exp:"1 suku: tambah -est."},{q:"'Beautiful' needs 'more' because:",opts:["Sounds better","Has 3+ syllables","Is irregular","Teachers prefer it"],ans:1,cat:"Kelas 5",exp:"3+ suku kata: more/most."},{q:"If A > B and B > C, then:",opts:["C is biggest","A is biggest","B is biggest","Cannot determine"],ans:1,cat:"Kelas 5",exp:"A > B > C -> A terbesar."},{q:"RIGHT structure?",opts:["The tiger more fast than lion","Tiger is fast than the lion","The tiger is faster than the lion","The tiger is more faster"],ans:2,cat:"Kelas 5",exp:"Subject + is + comparative + than."},{q:"'Bad' becomes 'worse' because:",opts:["It is irregular","Sounds better","Teachers like it","Rules say so"],ans:0,cat:"Kelas 5",exp:"bad -> worse -> worst (irregular)."},{q:"'Taller than' compares:",opts:["Two things at same time","Quality in two things","Height in two things","Age of two things"],ans:2,cat:"Kelas 5",exp:"taller than = membandingkan tinggi."},{q:"'The giraffe is the tallest' means:",opts:["More tall than others","Tallest of all","Very tall","Tall but not tallest"],ans:1,cat:"Kelas 5",exp:"the tallest = paling tinggi."},{q:"Lion fast, Eagle very fast, Turtle slow. Fastest?",opts:["Lion","Eagle","Turtle","Cannot determine"],ans:1,cat:"Kelas 5",exp:"Eagle very fast = fastest."},{q:"Correct comparative?",opts:["My house is bigger my school","My house is bigger than school","My house bigger than my school","My house is bigger than my school"],ans:3,cat:"Kelas 5",exp:"Subject + is + comp + than + noun."},{q:"An engineer's main job:",opts:["Teaching","Building or designing","Taking care of patients","Cooking"],ans:1,cat:"Kelas 6",exp:"Engineer merancang/membangun."},{q:"Why become a teacher?",opts:["Get famous","Help students learn","Earn much money","Travel"],ans:1,cat:"Kelas 6",exp:"Guru mendidik siswa."},{q:"Complete: 'She ___ to be a pilot.'",opts:["am wanting to be","want to flying","wants to be a","want to be a"],ans:2,cat:"Kelas 6",exp:"She + wants + to be + a."},{q:"Error: 'The doctor work in hospital.'",opts:["'work' should be 'works'","Need 'a' before hospital","'The' unnecessary","All correct"],ans:0,cat:"Kelas 6",exp:"Doctor (singular) -> works."},{q:"Architects mainly:",opts:["Build hospitals","Design buildings","Teach classes","Sell materials"],ans:1,cat:"Kelas 6",exp:"Architect merancang bangunan."},{q:"'want to be' vs 'am':",opts:["'Am' is future","'Want to be' is future plan","No difference","Same meaning"],ans:1,cat:"Kelas 6",exp:"want to be = rencana masa depan."},{q:"Why be a pilot? Most important:",opts:["Fly high","Earn salary","Help people travel safely","Get famous"],ans:2,cat:"Kelas 6",exp:"Pilot: keselamatan utama."},{q:"Correct: 'There ___ many schools.'",opts:["is many schools","are many school","are many schools","is schools many"],ans:2,cat:"Kelas 6",exp:"many = plural -> are."},{q:"Sentence WITH error:",opts:["We works in library","I am a nurse","He works as teacher","She likes reading"],ans:0,cat:"Kelas 6",exp:"We (plural) -> work."},{q:"Doctor's main goal?",opts:["Become famous","Save lives and health","Earn money","Study science"],ans:1,cat:"Kelas 6",exp:"Doctor menyelamatkan nyawa."},{q:"Office floor 1, Lab next to office, Library in front of lab. Order?",opts:["Office-Lab-Library","Library-Lab-Office","Lab-Office-Library","Library-Office-Lab"],ans:0,cat:"Kelas 7",exp:"Office -> Lab -> Library."},{q:"Error: 'There is many room in school.'",opts:["'is' should be 'are'","'many' wrong","'room' should be plural","All of the above"],ans:3,cat:"Kelas 7",exp:"3 errors: is->are, room->rooms."},{q:"'Between the lab and canteen' means:",opts:["To the side","In the middle of both","Very near one","Far from both"],ans:1,cat:"Kelas 7",exp:"between = di tengah."},{q:"Canteen floor 1, Lab floor 2, Office near lab. Office at:",opts:["Floor 1","Floor 2","Floor 3","Below floor 1"],ans:1,cat:"Kelas 7",exp:"Office sebelah lab = floor 2."},{q:"Preposition: 'in' or 'on'?",opts:["'on' for buildings","'in' for buildings","'on' for floors, 'in' for rooms","Both same"],ans:2,cat:"Kelas 7",exp:"on = lantai, in = ruangan."},{q:"Correct about lab:",opts:["Laboratory has many equipment","Laboratory have many equipment","The laboratory has equipment","Laboratory equipment has been"],ans:2,cat:"Kelas 7",exp:"Laboratory (singular) -> has."},{q:"Grammatically CORRECT?",opts:["There is a classroom a lab and a office","There is a classroom on a floor","There are classrooms, a lab, and an office in the school","There are a classroom and a office"],ans:2,cat:"Kelas 7",exp:"There are (plural) + list."},{q:"Floor 1 canteen, floor 2 lab, floor 3 office. Correct?",opts:["All floors have all","Canteen floor one lab two","There are canteen on first","The canteen is on the first floor, the lab on the second, the office on the third"],ans:3,cat:"Kelas 7",exp:"Parallel structure."},{q:"'Between' shows height level?",opts:["Yes always","No, horizontal position only","Both","Cannot determine"],ans:1,cat:"Kelas 7",exp:"between = posisi horizontal."},{q:"Which about prepositions is TRUE?",opts:["'In' and 'on' same","'At' can't be location","'In' for room, 'on' for floor","All interchangeable"],ans:2,cat:"Kelas 7",exp:"in = ruang, on = lantai."}]};
+
+// STATE
+var gs={screen:'home',teams:[],teamChars:[0,1,2,3],numTeams:2,currentTeam:0,controlTeam:0,scores:[0,0,0,0],combos:[0,0,0,0],maxCombos:[0,0,0,0],powerups:[[],[],[],[]],finishOrder:[],questionsAnswered:0,correctAnswers:[0,0,0,0],wrongAnswers:[0,0,0,0],duration:15,positions:[[1,1],[1,1],[1,1],[1,1]],currentQuestion:null,questionPool:[],timerInterval:null,timeLeft:0,questionTimer:null,questionTimeLeft:30,questionTimerStarted:false,maze:[],previousPos:null,targetPos:null,paused:false,fogOfWar:true,fogRadius:3,achievements:[],totalMoves:[0,0,0,0],shuffledOpts:null,activePowerup:null,feedbackData:null,powerupCells:{}};
+var COLORS=['#ff6b6b','#4ecdc4','#ffd93d','#6c5ce7'];
+var COLORS_LIGHT=['#ffe0e0','#d4f5f2','#fff3cd','#e8e0ff'];
+var CHARS=['\u{1F981}','\u{1F42C}','\u{1F98A}','\u{1F43C}','\u{1F42F}','\u{1F992}','\u{1F428}','\u{1F999}','\u{1F430}','\u{1F9DD}','\u{1F438}','\u{1F984}'];
+var POWERUPS=[{id:'double',icon:'\u26A1',name:'2x Poin'},{id:'skip',icon:'\u23ED\uFE0F',name:'Skip'},{id:'shield',icon:'\u{1F6E1}\uFE0F',name:'Shield'},{id:'hint',icon:'\u{1F4A1}',name:'Hint'}];
+
+// UTIL
+function shuffle(a){var b=a.slice();for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=b[i];b[i]=b[j];b[j]=t}return b}
+function showToast(msg){var c=document.getElementById('toast-container');var t=document.createElement('div');t.className='toast';t.textContent=msg;c.appendChild(t);setTimeout(function(){t.remove()},2500)}
+function spawnConfetti(n){var cols=['#ff6b6b','#ffd93d','#4ecdc4','#6c5ce7','#fd79a8','#00b894'];for(var i=0;i<n;i++){var e=document.createElement('div');e.className='confetti-piece';e.style.left=Math.random()*100+'%';e.style.background=cols[i%cols.length];e.style.width=(6+Math.random()*10)+'px';e.style.height=(6+Math.random()*10)+'px';e.style.animationDelay=Math.random()*2+'s';e.style.animationDuration=(2+Math.random()*2)+'s';e.style.borderRadius=Math.random()>0.5?'50%':'2px';document.body.appendChild(e);setTimeout(function(){e.remove()},5000)}}
+
+// MAZE
+function generateMaze(){var W=0,P=1,Q=2,E=3;var L=[[W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W],[W,P,P,Q,P,P,P,W,P,P,Q,P,P,P,W,P,P,Q,P,P,W],[W,P,W,P,W,W,P,W,P,W,P,W,W,P,W,P,W,P,W,P,W],[W,Q,P,P,Q,P,P,P,P,P,P,Q,P,P,P,P,P,P,Q,P,W],[W,P,W,W,P,W,W,W,W,Q,W,P,W,W,W,W,P,W,P,W,W],[W,P,P,Q,P,P,P,Q,P,P,P,P,Q,P,P,P,P,P,Q,P,W],[W,W,P,W,W,P,W,P,W,W,W,W,P,W,W,W,W,W,P,W,W],[W,Q,P,P,Q,P,P,P,P,Q,P,P,P,P,Q,P,P,Q,P,P,W],[W,P,W,P,W,W,P,W,W,P,W,W,W,W,P,W,W,P,W,P,W],[W,P,P,P,Q,P,P,Q,P,P,P,Q,P,P,P,P,P,P,Q,P,W],[W,W,P,W,P,W,W,P,W,P,W,P,W,W,P,W,W,W,P,W,W],[W,Q,P,Q,P,P,P,P,P,P,P,P,P,Q,P,P,Q,P,P,P,W],[W,P,W,P,W,W,W,W,Q,W,W,W,W,P,W,W,P,W,W,P,W],[W,P,P,P,Q,P,P,Q,P,P,P,Q,P,P,P,P,P,P,Q,P,W],[W,W,P,W,W,P,W,P,W,W,W,W,P,W,W,W,W,W,P,W,W],[W,Q,P,Q,P,P,P,P,P,Q,P,P,P,P,Q,P,P,Q,P,P,W],[W,P,W,P,W,W,P,W,W,P,W,W,W,W,P,W,W,P,W,P,W],[W,P,P,P,Q,P,P,Q,P,P,P,Q,P,P,P,P,P,P,Q,P,W],[W,W,P,W,W,P,W,P,W,W,W,W,P,W,W,W,W,W,P,W,W],[W,Q,P,Q,P,P,P,P,P,Q,P,P,P,P,Q,P,P,Q,P,E,W],[W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W]];gs.maze=L.map(function(r){return r.slice()});var paths=[];for(var r=0;r<21;r++)for(var c=0;c<21;c++)if(L[r][c]===P&&!(r===1&&c===1))paths.push([r,c]);var sp=shuffle(paths);gs.powerupCells={};for(var i=0;i<6&&i<sp.length;i++){gs.powerupCells[sp[i][0]+','+sp[i][1]]=POWERUPS[Math.floor(Math.random()*POWERUPS.length)]}}
+function initQPool(){gs.questionPool=shuffle([].concat(shuffle(questions.hard),shuffle(questions.medium),shuffle(questions.easy)))}
+function getQ(){if(!gs.questionPool.length)initQPool();return gs.questionPool.pop()}
+
+// TIMER
+function startTimer(){gs.timeLeft=gs.duration*60;if(gs.timerInterval)clearInterval(gs.timerInterval);gs.timerInterval=setInterval(function(){if(gs.paused)return;gs.timeLeft--;var el=document.getElementById('timer-display');if(el){var m=Math.floor(gs.timeLeft/60),s=gs.timeLeft%60;el.textContent=m+':'+(s<10?'0':'')+s;el.className=gs.timeLeft<=60?'timer danger':'timer'}if(gs.timeLeft<=0){clearInterval(gs.timerInterval);gs.screen='winner';render()}},1000)}
+
+// ACHIEVEMENTS
+function checkAch(ti){var checks=[{id:'first',cond:gs.correctAnswers[ti]===1,t:'Langkah Pertama',i:'\u{1F31F}'},{id:'c3',cond:gs.combos[ti]>=3,t:'Combo x3!',i:'\u{1F525}'},{id:'c5',cond:gs.combos[ti]>=5,t:'Unstoppable!',i:'\u{1F4A5}'},{id:'s100',cond:gs.scores[ti]>=100,t:'Centurion',i:'\u{1F4AF}'},{id:'s200',cond:gs.scores[ti]>=200,t:'Master',i:'\u{1F451}'}];checks.forEach(function(a){var k=ti+'_'+a.id;if(a.cond&&gs.achievements.indexOf(k)===-1){gs.achievements.push(k);showToast(a.i+' '+gs.teams[ti]+': '+a.t+'!');sound.play('combo')}})}
+
+// RENDER
+function render(){var app=document.getElementById('app');switch(gs.screen){case'home':renderHome(app);break;case'setup':renderSetup(app);break;case'character':renderChar(app);break;case'rules':renderRules(app);break;case'duration':renderDuration(app);break;case'maze':renderMaze(app);break;case'question':renderQuestion(app);break;case'feedback':renderFeedback(app);break;case'scoreboard':renderScoreboard(app);break;case'winner':renderWinner(app);break}}
+
+function renderHome(app){app.innerHTML='<div class="screen"><div class="screen-inner bounce-in"><div style="font-size:5rem;margin-bottom:16px" class="float-anim">\u{1F3F0}</div><h1 class="tf" style="font-size:2.8rem;color:#fff;text-shadow:0 4px 20px rgba(102,126,234,0.5);margin-bottom:8px">Labirin Pengetahuan</h1><p style="color:#c3b8e8;font-size:1rem;margin-bottom:4px">Game Edukasi Bahasa Inggris</p><p style="color:rgba(195,184,232,0.6);font-size:0.85rem;margin-bottom:24px">Kelas 5 \u2022 6 \u2022 7</p><div class="tag-row"><span class="tag">\u{1F9E9} 75 Soal</span><span class="tag">\u{1F465} 1-4 Tim</span><span class="tag">\u26A1 Power-ups</span><span class="tag">\u{1F525} Combo</span></div><div style="margin-top:28px"><button class="btn btn-primary" style="font-size:1.15rem;padding:16px 40px" onclick="sound.init();gs.screen=\'setup\';render()">\u{1F680} Mulai Petualangan</button></div><div style="margin-top:16px;display:flex;gap:12px;justify-content:center"><button class="btn-ghost" onclick="sound.init();sound.enabled=!sound.enabled;this.textContent=sound.enabled?\'\u{1F50A} ON\':\'\u{1F507} OFF\'">\u{1F50A} ON</button><a href="../index.html" class="btn-ghost">\u{1F3E0} Portal</a></div><div style="margin-top:24px;display:flex;gap:16px;justify-content:center;font-size:1.8rem"><span class="float-anim">\u{1F9E9}</span><span class="float-anim" style="animation-delay:0.4s">\u{1F5FA}\uFE0F</span><span class="float-anim" style="animation-delay:0.8s">\u2B50</span><span class="float-anim" style="animation-delay:1.2s">\u{1F3C6}</span></div></div></div>'}
+
+function renderSetup(app){var numBtns='';for(var n=1;n<=4;n++)numBtns+='<button class="num-btn'+(gs.numTeams===n?' active':'')+'" onclick="gs.numTeams='+n+';render()">'+n+'</button>';var boxes='';for(var i=0;i<gs.numTeams;i++){boxes+='<div class="team-box" style="background:'+COLORS_LIGHT[i]+';border-color:'+COLORS[i]+'50"><div style="font-size:2rem;margin-bottom:8px">'+CHARS[gs.teamChars[i]]+'</div><input type="text" id="team-'+i+'" placeholder="Nama Tim '+(i+1)+'" value="'+(gs.teams[i]||'')+'" onchange="gs.teams['+i+']=this.value"></div>'}app.innerHTML='<div class="screen"><div class="card slide-up"><h2 class="tf" style="font-size:1.8rem;color:#5b21b6;text-align:center;margin-bottom:20px">\u{1F465} Setup Tim</h2><p style="text-align:center;font-size:0.8rem;color:#999;font-weight:700;margin-bottom:8px">Jumlah Tim</p><div class="num-btns">'+numBtns+'</div><div class="team-grid">'+boxes+'</div><div style="display:flex;gap:10px;justify-content:center;margin-top:20px"><button class="btn-outline" onclick="gs.screen=\'home\';render()">\u2190 Kembali</button><button class="btn btn-primary btn-sm" onclick="gs.screen=\'character\';render()">Pilih Karakter \u2192</button></div></div></div>'}
+
+function renderChar(app){var sections='';for(var ti=0;ti<gs.numTeams;ti++){var btns='';for(var ci=0;ci<CHARS.length;ci++){btns+='<button class="char-btn'+(gs.teamChars[ti]===ci?' active':'')+'" onclick="gs.teamChars['+ti+']='+ci+';render()">'+CHARS[ci]+'</button>'}sections+='<div style="border-radius:14px;padding:14px;border:2px solid '+COLORS[ti]+'40;background:'+COLORS_LIGHT[ti]+';margin-bottom:10px"><p style="font-weight:700;color:#555;font-size:0.85rem;margin-bottom:8px">'+(gs.teams[ti]||'Tim '+(ti+1))+'</p><div class="char-grid">'+btns+'</div></div>'}app.innerHTML='<div class="screen"><div class="card slide-up" style="max-height:85vh;overflow-y:auto"><h2 class="tf" style="font-size:1.8rem;color:#5b21b6;text-align:center;margin-bottom:16px">\u{1F981} Pilih Karakter</h2>'+sections+'<div style="display:flex;gap:10px;justify-content:center;margin-top:16px"><button class="btn-outline" onclick="gs.screen=\'setup\';render()">\u2190 Kembali</button><button class="btn btn-primary btn-sm" onclick="saveTeams()">Lanjut \u2192</button></div></div></div>'}
+
+function saveTeams(){for(var i=0;i<gs.numTeams;i++){var inp=document.getElementById('team-'+i);if(inp&&inp.value)gs.teams[i]=inp.value;if(!gs.teams[i])gs.teams[i]='Tim '+(i+1)}gs.teams=gs.teams.slice(0,gs.numTeams);gs.scores=[];gs.combos=[];gs.maxCombos=[];gs.correctAnswers=[];gs.wrongAnswers=[];gs.totalMoves=[];gs.powerups=[];for(var i=0;i<gs.numTeams;i++){gs.scores.push(0);gs.combos.push(0);gs.maxCombos.push(0);gs.correctAnswers.push(0);gs.wrongAnswers.push(0);gs.totalMoves.push(0);gs.powerups.push([])}gs.screen='rules';render()}
+
+function renderRules(app){var rules=[{i:'\u{1F3AE}',t:'Gerakkan bidak',d:'Keyboard (WASD/Arrow) atau D-Pad'},{i:'\u2753',t:'Jawab soal di petak oranye',d:'Soal muncul otomatis saat menyentuh'},{i:'\u2705',t:'Benar = Maju + Poin',d:'+10/+20/+30. Combo = bonus!'},{i:'\u274C',t:'Salah/Timeout/Nyerah',d:'Mundur 1 / Mundur 2 / START'},{i:'\u26A1',t:'Power-ups di jalur',d:'2x Poin, Skip, Shield, Hint'},{i:'\u{1F6AA}',t:'EXIT = +50 bonus',d:'Skor tertinggi = MENANG!'}];var items='';rules.forEach(function(r){items+='<div class="rule-item"><span class="ri-icon">'+r.i+'</span><div><div class="ri-title">'+r.t+'</div><div class="ri-desc">'+r.d+'</div></div></div>'});app.innerHTML='<div class="screen"><div class="card slide-up" style="max-height:85vh;overflow-y:auto"><h2 class="tf" style="font-size:1.6rem;color:#5b21b6;text-align:center;margin-bottom:16px">\u{1F4DC} Cara Bermain</h2>'+items+'<div style="display:flex;gap:10px;justify-content:center;margin-top:16px"><button class="btn-outline" onclick="gs.screen=\'character\';render()">\u2190 Kembali</button><button class="btn btn-primary btn-sm" onclick="gs.screen=\'duration\';render()">Pilih Durasi \u2192</button></div></div></div>'}
+
+function renderDuration(app){var opts=[{d:10,l:'Cepat',e:'\u26A1'},{d:15,l:'Normal',e:'\u{1F44D}'},{d:25,l:'Panjang',e:'\u{1F4DA}'},{d:40,l:'Marathon',e:'\u{1F9E0}'}];var btns='';opts.forEach(function(o){btns+='<button class="dur-btn'+(gs.duration===o.d?' active':'')+'" onclick="gs.duration='+o.d+';render()"><span>'+o.e+' '+o.l+'</span><span style="font-size:0.85rem;opacity:0.7">'+o.d+' menit</span></button>'});app.innerHTML='<div class="screen"><div class="card bounce-in" style="max-width:400px"><h2 class="tf" style="font-size:1.8rem;color:#5b21b6;text-align:center;margin-bottom:20px">\u23F1\uFE0F Durasi</h2>'+btns+'<label class="fog-toggle"><input type="checkbox" '+(gs.fogOfWar?'checked':'')+' onchange="gs.fogOfWar=this.checked"><span style="font-weight:700;color:#555;font-size:0.85rem">\u{1F32B}\uFE0F Fog of War</span></label><div style="display:flex;gap:10px;justify-content:center;margin-top:16px"><button class="btn-outline" onclick="gs.screen=\'rules\';render()">\u2190 Kembali</button><button class="btn btn-primary btn-sm" onclick="startGame()">\u{1F3AE} Mulai!</button></div></div></div>'}
+
+function startGame(){generateMaze();initQPool();gs.currentTeam=0;gs.controlTeam=0;gs.questionsAnswered=0;gs.finishOrder=[];gs.positions=[];for(var i=0;i<gs.numTeams;i++)gs.positions.push([1,1]);gs.achievements=[];gs.screen='maze';render();startTimer()}
+
+function renderMaze(app){var ct=gs.controlTeam,pr=gs.positions[ct][0],pc=gs.positions[ct][1];var m=Math.floor(gs.timeLeft/60),s=gs.timeLeft%60;var timerStr=m+':'+(s<10?'0':'')+s;var timerCls=gs.timeLeft<=60?'timer danger':'timer';var teamBtns='';for(var i=0;i<gs.numTeams;i++){teamBtns+='<div class="tb'+(i===ct?' active':'')+'" style="background:'+COLORS[i]+(i===ct?'':'80')+'" onclick="gs.controlTeam='+i+';render()">'+CHARS[gs.teamChars[i]]+' '+gs.scores[i]+(gs.finishOrder.indexOf(i)>=0?' \u2713':'')+'</div>'}var puSlots='';if(gs.powerups[ct]&&gs.powerups[ct].length){gs.powerups[ct].forEach(function(pu,idx){puSlots+='<div class="pu-slot" title="'+pu.name+'" onclick="activatePU('+ct+','+idx+')">'+pu.icon+'</div>'})}else{puSlots='<span class="pu-empty">kosong</span>'}var comboBadge='';if(gs.combos[ct]>=2)comboBadge='<span class="streak-glow" style="background:#ff9800;color:#fff;font-size:0.7rem;font-weight:700;padding:2px 8px;border-radius:50px;margin-left:6px">\u{1F525}x'+gs.combos[ct]+'</span>';var cells='';for(var r=0;r<21;r++){for(var c=0;c<21;c++){var cell=gs.maze[r][c];var dist=Math.abs(r-pr)+Math.abs(c-pc);if(gs.fogOfWar&&dist>gs.fogRadius){cells+='<div class="mc mc-fog"></div>';continue}var cls='mc ';var content='';if(cell===0)cls+='mc-wall';else if(cell===3){cls+='mc-exit';content='\u{1F6AA}'}else if(cell===2){cls+='mc-q';content='\u2753'}else{cls+='mc-path';var pk=r+','+c;if(gs.powerupCells[pk])content=gs.powerupCells[pk].icon}var players='';for(var t=0;t<gs.numTeams;t++){if(gs.positions[t][0]===r&&gs.positions[t][1]===c){var multi=gs.numTeams>1;for(var t2=0;t2<gs.numTeams;t2++){if(t2!==t&&gs.positions[t2][0]===r&&gs.positions[t2][1]===c){multi=true;break}}players+='<span class="pm'+(multi?' multi':'')+'">'+CHARS[gs.teamChars[t]]+'</span>'}}if(players)content=players;cells+='<div class="'+cls+'">'+content+'</div>'}}app.innerHTML='<div class="maze-screen"><div class="maze-topbar"><div style="display:flex;align-items:center;gap:6px"><span style="color:#fff;font-size:0.9rem">\u23F1\uFE0F</span><span id="timer-display" class="'+timerCls+'">'+timerStr+'</span></div><div class="team-info">'+CHARS[gs.teamChars[ct]]+' '+gs.teams[ct]+comboBadge+'</div><div class="top-btns"><button onclick="gs.paused=true;renderPause()">\u23F8\uFE0F</button><button onclick="gs.screen=\'scoreboard\';render()">\u{1F4CA}</button></div></div><div class="maze-teambar">'+teamBtns+'</div><div class="maze-pubar"><span class="pu-label">PU:</span>'+puSlots+'</div><div class="maze-area"><div class="maze-wrap"><div class="maze-grid" style="grid-template-columns:repeat(21,1fr)">'+cells+'</div></div></div><div class="maze-controls"><div class="dpad"><button class="dpad-btn dpad-up" ontouchstart="event.preventDefault();move(-1,0)" onclick="move(-1,0)">\u2191</button><button class="dpad-btn dpad-left" ontouchstart="event.preventDefault();move(0,-1)" onclick="move(0,-1)">\u2190</button><div class="dpad-btn dpad-center">'+CHARS[gs.teamChars[ct]]+'</div><button class="dpad-btn dpad-right" ontouchstart="event.preventDefault();move(0,1)" onclick="move(0,1)">\u2192</button><button class="dpad-btn dpad-down" ontouchstart="event.preventDefault();move(1,0)" onclick="move(1,0)">\u2193</button></div></div></div>'}
+
+function move(dr,dc){var ti=gs.controlTeam,r=gs.positions[ti][0],c=gs.positions[ti][1],nr=r+dr,nc=c+dc;if(nr<0||nr>=21||nc<0||nc>=21)return;var cell=gs.maze[nr][nc];if(cell===0)return;sound.play('move');gs.totalMoves[ti]++;var pk=nr+','+nc;if(gs.powerupCells[pk]){var pu=gs.powerupCells[pk];if(gs.powerups[ti].length<3){gs.powerups[ti].push(pu);sound.play('powerup');showToast(pu.icon+' '+gs.teams[ti]+': '+pu.name+'!')}delete gs.powerupCells[pk]}if(cell===2){gs.currentQuestion=getQ();gs.currentTeam=ti;gs.previousPos=[r,c];gs.targetPos=[nr,nc];gs.questionTimerStarted=false;gs.shuffledOpts=null;gs.activePowerup=null;gs.screen='question';render()}else if(cell===3){gs.positions[ti]=[nr,nc];if(gs.finishOrder.indexOf(ti)===-1){gs.finishOrder.push(ti);gs.scores[ti]+=50;sound.play('finish');showToast('\u{1F3C6} '+gs.teams[ti]+' EXIT! +50!');spawnConfetti(20)}if(gs.finishOrder.length>=gs.numTeams)setTimeout(function(){gs.screen='winner';render()},1500);else render()}else{gs.positions[ti]=[nr,nc];render()}}
+
+function activatePU(ti,idx){var pu=gs.powerups[ti][idx];if(!pu)return;gs.activePowerup=pu;gs.powerups[ti].splice(idx,1);showToast(pu.icon+' '+pu.name+' aktif!');sound.play('powerup');render()}
+
+function renderQuestion(app){var q=gs.currentQuestion;if(!q)return;var isEasy=questions.easy.indexOf(q)>=0,isMed=questions.medium.indexOf(q)>=0;var level=isEasy?'Mudah':isMed?'Sedang':'HOTS';var lc=isEasy?'#00b894':isMed?'#f39c12':'#e74c3c';var stars=isEasy?'\u2B50':isMed?'\u2B50\u2B50':'\u2B50\u2B50\u2B50';if(!gs.shuffledOpts)gs.shuffledOpts=shuffle([0,1,2,3]);if(!gs.questionTimerStarted){gs.questionTimerStarted=true;gs.questionTimeLeft=30;if(gs.questionTimer)clearInterval(gs.questionTimer);gs.questionTimer=setInterval(function(){gs.questionTimeLeft--;var el=document.getElementById('q-timer');if(el){el.textContent=gs.questionTimeLeft+'s';el.className=gs.questionTimeLeft<=10?'q-timer danger':'q-timer'}if(gs.questionTimeLeft<=10)sound.play('tick');if(gs.questionTimeLeft<=0){clearInterval(gs.questionTimer);timeoutQ()}},1000)}var hidden=[];if(gs.activePowerup&&gs.activePowerup.id==='hint'){var wrong=[0,1,2,3].filter(function(i){return i!==q.ans});hidden=shuffle(wrong).slice(0,2);gs.activePowerup=null}var opts='';gs.shuffledOpts.forEach(function(oi,di){var dis=hidden.indexOf(oi)>=0;opts+='<button class="opt-btn'+(dis?' disabled':'')+'" onclick="answer('+oi+')"'+(dis?' disabled':'')+'>  <span class="opt-letter">'+'ABCD'[di]+'</span><span>'+q.opts[oi]+'</span></button>'});var comboBadge='';if(gs.combos[gs.currentTeam]>=2)comboBadge='<span class="qt-combo">\u{1F525}x'+gs.combos[gs.currentTeam]+'</span>';var actions='';if(gs.powerups[gs.currentTeam].some(function(p){return p.id==='skip'}))actions+='<button class="q-act-skip" onclick="useSkip()">\u23ED\uFE0F Skip</button>';if(!hidden.length&&gs.powerups[gs.currentTeam].some(function(p){return p.id==='hint'}))actions+='<button class="q-act-hint" onclick="useHint()">\u{1F4A1} Hint</button>';actions+='<button class="q-act-surr" onclick="surrender()">\u{1F62D} Nyerah</button>';app.innerHTML='<div class="q-screen"><div class="q-card slide-up"><div class="q-header"><div class="q-badges"><span class="q-badge" style="background:'+lc+'">'+stars+' '+level+'</span><span class="q-badge" style="background:#667eea">'+q.cat+'</span></div><span id="q-timer" class="q-timer'+(gs.questionTimeLeft<=10?' danger':'')+'">'+gs.questionTimeLeft+'s</span></div><div class="q-team"><span class="qt-char">'+CHARS[gs.teamChars[gs.currentTeam]]+'</span><span class="qt-name">'+gs.teams[gs.currentTeam]+'</span>'+comboBadge+'</div><p class="q-text">'+q.q+'</p><div class="q-opts">'+opts+'</div><div class="q-actions">'+actions+'</div></div></div>'}
+
+function answer(sel){var q=gs.currentQuestion,ti=gs.currentTeam,correct=sel===q.ans;clearInterval(gs.questionTimer);gs.questionTimerStarted=false;var isEasy=questions.easy.indexOf(q)>=0,isMed=questions.medium.indexOf(q)>=0;var basePoints=isEasy?10:isMed?20:30;var points=basePoints;if(correct){gs.combos[ti]++;if(gs.combos[ti]>gs.maxCombos[ti])gs.maxCombos[ti]=gs.combos[ti];var comboMult=gs.combos[ti]>=5?3:gs.combos[ti]>=3?2:1;if(gs.activePowerup&&gs.activePowerup.id==='double'){points*=2;gs.activePowerup=null}points*=comboMult;gs.positions[ti]=gs.targetPos;gs.scores[ti]+=points;gs.correctAnswers[ti]++;sound.play('correct');if(gs.combos[ti]>=3)sound.play('combo');checkAch(ti);gs.feedbackData={correct:true,points:points,combo:gs.combos[ti],q:q}}else{gs.combos[ti]=0;gs.wrongAnswers[ti]++;var hasShield=gs.activePowerup&&gs.activePowerup.id==='shield';if(hasShield){gs.activePowerup=null;showToast('\u{1F6E1}\uFE0F Shield! Tidak mundur.')}else if(gs.previousPos)gs.positions[ti]=gs.previousPos;sound.play('wrong');gs.feedbackData={correct:false,points:0,combo:0,q:q,shielded:hasShield}}gs.activePowerup=null;gs.questionsAnswered++;gs.shuffledOpts=null;gs.screen='feedback';render()}
+
+function timeoutQ(){clearInterval(gs.questionTimer);gs.questionTimerStarted=false;var ti=gs.currentTeam;gs.combos[ti]=0;gs.wrongAnswers[ti]++;if(gs.previousPos){gs.positions[ti]=gs.previousPos;var r=gs.previousPos[0],c=gs.previousPos[1];var dirs=[[-1,0],[1,0],[0,-1],[0,1]];for(var d=0;d<dirs.length;d++){var nr=r+dirs[d][0],nc=c+dirs[d][1];if(nr>=0&&nr<21&&nc>=0&&nc<21&&gs.maze[nr][nc]!==0){gs.positions[ti]=[nr,nc];break}}}sound.play('wrong');gs.feedbackData={correct:false,points:0,combo:0,q:gs.currentQuestion,timeout:true};gs.shuffledOpts=null;gs.questionsAnswered++;gs.screen='feedback';render()}
+
+function surrender(){clearInterval(gs.questionTimer);gs.questionTimerStarted=false;var ti=gs.currentTeam;gs.combos[ti]=0;gs.wrongAnswers[ti]++;gs.positions[ti]=[1,1];sound.play('wrong');gs.feedbackData={correct:false,points:0,combo:0,q:gs.currentQuestion,surrender:true};gs.shuffledOpts=null;gs.questionsAnswered++;gs.screen='feedback';render()}
+
+function useSkip(){clearInterval(gs.questionTimer);gs.questionTimerStarted=false;var idx=-1;for(var i=0;i<gs.powerups[gs.currentTeam].length;i++){if(gs.powerups[gs.currentTeam][i].id==='skip'){idx=i;break}}if(idx>=0)gs.powerups[gs.currentTeam].splice(idx,1);showToast('\u23ED\uFE0F Skip!');gs.shuffledOpts=null;gs.screen='maze';render()}
+function useHint(){var ti=gs.currentTeam,idx=-1;for(var i=0;i<gs.powerups[ti].length;i++){if(gs.powerups[ti][i].id==='hint'){idx=i;break}}if(idx>=0){gs.activePowerup=gs.powerups[ti][idx];gs.powerups[ti].splice(idx,1);gs.shuffledOpts=null;render()}}
+
+function renderFeedback(app){var d=gs.feedbackData,q=d.q;var icon,title,subtitle,color;if(d.correct){icon='\u{1F389}';title='Benar!';subtitle='+'+d.points+' poin'+(d.combo>=3?' (Combo x'+d.combo+'!)':'');color='#2e7d32'}else if(d.timeout){icon='\u23F0';title='Waktu Habis!';subtitle='Mundur 2 petak';color='#e65100'}else if(d.surrender){icon='\u{1F62D}';title='Nyerah!';subtitle='Kembali ke START';color='#c62828'}else if(d.shielded){icon='\u{1F6E1}\uFE0F';title='Salah, tapi Shield!';subtitle='Tidak mundur';color='#1565c0'}else{icon='\u{1F605}';title='Salah!';subtitle='Mundur 1 petak';color='#c62828'}app.innerHTML='<div class="screen"><div class="card bounce-in" style="max-width:480px;text-align:center"><div class="fb-icon">'+icon+'</div><h2 class="tf fb-title" style="color:'+color+'">'+title+'</h2><p class="fb-sub">'+subtitle+'</p><div class="fb-explain"><p class="fb-el">\u{1F4DA} Penjelasan:</p><p class="fb-et">'+q.exp+'</p></div><div class="fb-answer"><p class="fba-q"><strong>Soal:</strong> '+q.q+'</p><p class="fba-a">\u2705 Jawaban: '+q.opts[q.ans]+'</p></div><button class="btn btn-primary btn-block" onclick="gs.screen=\'maze\';render()">Lanjut \u2192</button></div></div>'}
+
+function renderScoreboard(app){var sorted=gs.teams.map(function(t,i){return{name:t,score:gs.scores[i],idx:i,correct:gs.correctAnswers[i],combo:gs.maxCombos[i]}}).sort(function(a,b){return b.score-a.score});var rows='';sorted.forEach(function(t,rank){rows+='<div class="sb-row" style="background:'+COLORS_LIGHT[t.idx]+';border-left:4px solid '+COLORS[t.idx]+'"><div class="sb-left"><span class="sb-rank">#'+(rank+1)+'</span><span style="font-size:1.5rem">'+CHARS[gs.teamChars[t.idx]]+'</span><div><div class="sb-name">'+t.name+'</div><div class="sb-stats">\u2705'+t.correct+' | \u{1F525}max '+t.combo+'</div></div></div><span class="sb-score" style="color:'+COLORS[t.idx]+'">'+t.score+'</span></div>'});app.innerHTML='<div class="screen"><div class="card slide-up" style="max-width:480px"><h2 class="tf" style="font-size:1.8rem;color:#5b21b6;text-align:center;margin-bottom:20px">\u{1F4CA} Papan Skor</h2>'+rows+'<div style="display:flex;gap:10px;justify-content:center;margin-top:20px"><button class="btn-outline" onclick="gs.screen=\'maze\';render()">\u2190 Kembali</button><button class="btn btn-secondary btn-sm" onclick="gs.screen=\'winner\';clearInterval(gs.timerInterval);render()">\u{1F3C6} Akhiri</button></div></div></div>'}
+
+function renderWinner(app){clearInterval(gs.timerInterval);clearInterval(gs.questionTimer);var sorted=gs.teams.map(function(t,i){return{name:t,score:gs.scores[i],idx:i,correct:gs.correctAnswers[i],wrong:gs.wrongAnswers[i],combo:gs.maxCombos[i],moves:gs.totalMoves[i]}}).sort(function(a,b){return b.score-a.score});var w=sorted[0];spawnConfetti(40);sound.play('finish');var medals=['\u{1F947}','\u{1F948}','\u{1F949}','4\uFE0F\u20E3'];var rankRows='';sorted.forEach(function(t,r){rankRows+='<div class="win-rank-row"><div class="win-rank-left"><span>'+medals[r]+'</span><span style="font-size:1.3rem">'+CHARS[gs.teamChars[t.idx]]+'</span><span style="font-weight:700;color:#333;font-size:0.85rem">'+t.name+'</span></div><div style="text-align:right"><div class="win-rank-score" style="color:'+COLORS[t.idx]+'">'+t.score+'</div><div class="win-rank-sub">\u2705'+t.correct+' \u{1F525}x'+t.combo+'</div></div></div>'});app.innerHTML='<div class="screen"><div class="card bounce-in" style="max-width:480px;text-align:center;max-height:90vh;overflow-y:auto"><div style="font-size:4.5rem;margin-bottom:8px">\u{1F3C6}</div><h2 class="tf" style="font-size:2.2rem;color:#f59e0b;margin-bottom:8px">SELAMAT!</h2><div style="font-size:3.5rem;margin:8px 0">'+CHARS[gs.teamChars[w.idx]]+'</div><h3 class="tf" style="font-size:1.8rem;color:'+COLORS[w.idx]+';margin-bottom:4px">'+w.name+'</h3><p style="font-size:1.5rem;font-weight:700;color:#555;margin-bottom:8px">'+w.score+' Poin</p><div style="display:flex;justify-content:center;gap:12px;font-size:0.8rem;color:#888;margin-bottom:16px"><span>\u2705 '+w.correct+'</span><span>\u274C '+w.wrong+'</span><span>\u{1F525} max x'+w.combo+'</span><span>\u{1F463} '+w.moves+'</span></div><div class="win-ranks"><p style="text-align:center;font-size:0.8rem;font-weight:700;color:#999;margin-bottom:8px">Peringkat</p>'+rankRows+'</div><button class="btn btn-primary" onclick="resetGame()">\u{1F504} Main Lagi</button></div></div>'}
+
+function renderPause(){var overlay=document.createElement('div');overlay.id='pause-overlay';overlay.className='pause-overlay';overlay.innerHTML='<div class="pause-box"><h2>\u23F8\uFE0F Pause</h2><p>Game dijeda</p><div class="pause-btns"><button class="btn btn-primary" onclick="gs.paused=false;document.getElementById(\'pause-overlay\').remove()">\u25B6\uFE0F Lanjut</button><button class="btn btn-secondary btn-sm" onclick="gs.paused=false;document.getElementById(\'pause-overlay\').remove();gs.screen=\'scoreboard\';render()">\u{1F4CA} Skor</button><button class="btn-outline" onclick="gs.paused=false;document.getElementById(\'pause-overlay\').remove();resetGame()">\u{1F3E0} Keluar</button></div></div>';document.body.appendChild(overlay)}
+
+function resetGame(){clearInterval(gs.timerInterval);clearInterval(gs.questionTimer);gs.screen='home';gs.scores=[0,0,0,0];gs.combos=[0,0,0,0];gs.questionsAnswered=0;gs.currentTeam=0;gs.controlTeam=0;gs.finishOrder=[];gs.teams=[];gs.teamChars=[0,1,2,3];gs.numTeams=2;gs.shuffledOpts=null;gs.activePowerup=null;render()}
+
+// KEYBOARD
+document.addEventListener('keydown',function(e){if(gs.screen!=='maze')return;var k=e.key.toLowerCase();var dr=0,dc=0;if(k==='arrowup'||k==='w'){dr=-1;e.preventDefault()}else if(k==='arrowdown'||k==='s'){dr=1;e.preventDefault()}else if(k==='arrowleft'||k==='a'){dc=-1;e.preventDefault()}else if(k==='arrowright'||k==='d'){dc=1;e.preventDefault()}if(dr||dc)move(dr,dc)});
+
+// TOUCH SWIPE
+var tx=0,ty=0;
+document.addEventListener('touchstart',function(e){if(gs.screen!=='maze')return;tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});
+document.addEventListener('touchend',function(e){if(gs.screen!=='maze')return;var dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;var th=50;var dr=0,dc=0;if(Math.abs(dx)>Math.abs(dy)){if(dx>th)dc=1;else if(dx<-th)dc=-1}else{if(dy>th)dr=1;else if(dy<-th)dr=-1}if(dr||dc)move(dr,dc)});
+
+render();
+
+// ===== PROJECTOR INTEGRATION =====
+var _origStartGame = startGame;
+startGame = function() {
+  if (typeof EduProjector !== 'undefined' && EduProjector.isActive()) {
+    saveTeams();
+    EduProjector.showLobby({
+      title: 'Labirin Pengetahuan',
+      subtitle: gs.numTeams + ' Tim • ' + gs.duration + ' Menit',
+      players: gs.teams.slice(0, gs.numTeams),
+      chars: gs.teamChars.slice(0, gs.numTeams),
+      charEmojis: CHARS,
+      colors: COLORS
+    }, function() {
+      generateMaze(); initQPool();
+      gs.currentTeam = 0; gs.controlTeam = 0;
+      gs.questionsAnswered = 0; gs.finishOrder = [];
+      gs.positions = [];
+      for (var i = 0; i < gs.numTeams; i++) gs.positions.push([1,1]);
+      gs.achievements = []; gs.screen = 'maze';
+      render(); startTimer();
+      _updateLabirinScorebar();
+    });
+  } else {
+    _origStartGame();
+  }
+};
+
+var _origRender = render;
+render = function() {
+  _origRender();
+  _updateLabirinScorebar();
+};
+
+function _updateLabirinScorebar() {
+  if (typeof EduProjector === 'undefined') return;
+  if (gs.screen === 'maze' || gs.screen === 'question' || gs.screen === 'feedback') {
+    EduProjector.updateScoreboardBar(
+      gs.teams.slice(0, gs.numTeams),
+      gs.scores.slice(0, gs.numTeams),
+      gs.teamChars.slice(0, gs.numTeams),
+      COLORS, gs.controlTeam, CHARS
+    );
+  }
+}
+
+// Celebration on correct answer
+var _origAnswer = answer;
+answer = function(sel) {
+  var q = gs.currentQuestion, correct = sel === q.ans;
+  _origAnswer(sel);
+  if (correct && typeof EduProjector !== 'undefined' && EduProjector.isActive()) {
+    var combo = gs.combos[gs.currentTeam];
+    if (combo >= 5) EduProjector.showCelebration('🔥 COMBO x' + combo + '! 🔥', 1500);
+    else if (combo >= 3) EduProjector.showCelebration('⚡ COMBO x' + combo + '!', 1200);
+  }
+};
+</script>
+<script src="../shared/edu-theme.js"></script>
+<script src="../shared/edu-projector.js"></script>
+</body>
+</html>

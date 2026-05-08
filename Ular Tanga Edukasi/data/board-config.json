@@ -1,0 +1,25 @@
+{
+  "boardSize": 100,
+  "layout": "zigzag",
+  "snakes": [
+    {"from": 99, "to": 41, "label": "Ular Besar"},
+    {"from": 89, "to": 53, "label": "Ular Medium"},
+    {"from": 76, "to": 58, "label": "Ular Kecil"},
+    {"from": 62, "to": 19, "label": "Ular Panjang"},
+    {"from": 47, "to": 26, "label": "Ular"},
+    {"from": 33, "to": 3, "label": "Ular"},
+    {"from": 25, "to": 5, "label": "Ular Pendek"}
+  ],
+  "ladders": [
+    {"from": 2, "to": 23, "label": "Tangga Emas"},
+    {"from": 8, "to": 34, "label": "Tangga Panjang"},
+    {"from": 20, "to": 77, "label": "Tangga Besar"},
+    {"from": 32, "to": 68, "label": "Tangga"},
+    {"from": 41, "to": 79, "label": "Tangga"},
+    {"from": 50, "to": 91, "label": "Tangga"},
+    {"from": 71, "to": 92, "label": "Tangga Kecil"}
+  ],
+  "questionTiles": [5, 12, 18, 24, 29, 35, 42, 48, 55, 61, 67, 74, 80, 87, 93],
+  "powerupTiles": [7, 15, 28, 40, 52, 65, 78, 90],
+  "finishTile": 100
+}

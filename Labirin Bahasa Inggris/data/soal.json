@@ -1,0 +1,850 @@
+{
+  "config": {
+    "title": "Bank Soal Labirin Bahasa Inggris",
+    "description": "Soal Bahasa Inggris untuk kelas 5-7"
+  },
+  "categories": [
+    {
+      "id": "kelas_5-easy",
+      "name": "Kelas 5 - Mudah",
+      "icon": "🐣",
+      "level": "easy",
+      "soal": [
+        {
+          "q": "What is the biggest land animal?",
+          "opts": [
+            "Elephant",
+            "Giraffe",
+            "Lion",
+            "Bear"
+          ],
+          "ans": 0,
+          "exp": "Gajah adalah hewan darat terbesar!"
+        },
+        {
+          "q": "The giraffe is the ___ animal.",
+          "opts": [
+            "tallest",
+            "shortest",
+            "smallest",
+            "fastest"
+          ],
+          "ans": 0,
+          "exp": "Jerapah paling tinggi!"
+        },
+        {
+          "q": "Which animal is the fastest?",
+          "opts": [
+            "Cheetah",
+            "Elephant",
+            "Turtle",
+            "Dog"
+          ],
+          "ans": 0,
+          "exp": "Cheetah berlari 120 km/jam!"
+        },
+        {
+          "q": "The turtle is ___ than the rabbit.",
+          "opts": [
+            "slower",
+            "faster",
+            "bigger",
+            "taller"
+          ],
+          "ans": 0,
+          "exp": "Kura-kura lebih lambat."
+        },
+        {
+          "q": "An elephant is ___ than a cat.",
+          "opts": [
+            "bigger",
+            "smaller",
+            "thinner",
+            "shorter"
+          ],
+          "ans": 0,
+          "exp": "Gajah lebih besar dari kucing!"
+        },
+        {
+          "q": "The color of the sky is ___.",
+          "opts": [
+            "blue",
+            "red",
+            "green",
+            "black"
+          ],
+          "ans": 0,
+          "exp": "Sky = blue."
+        }
+      ]
+    },
+    {
+      "id": "kelas_6-easy",
+      "name": "Kelas 6 - Mudah",
+      "icon": "🌟",
+      "level": "easy",
+      "soal": [
+        {
+          "q": "A pilot flies a ___.",
+          "opts": [
+            "plane",
+            "car",
+            "boat",
+            "train"
+          ],
+          "ans": 0,
+          "exp": "Pilot menerbangkan pesawat."
+        },
+        {
+          "q": "A doctor works in a ___.",
+          "opts": [
+            "hospital",
+            "school",
+            "airport",
+            "market"
+          ],
+          "ans": 0,
+          "exp": "Dokter bekerja di rumah sakit."
+        },
+        {
+          "q": "A teacher works in a ___.",
+          "opts": [
+            "school",
+            "hospital",
+            "airport",
+            "farm"
+          ],
+          "ans": 0,
+          "exp": "Guru mengajar di sekolah."
+        }
+      ]
+    },
+    {
+      "id": "kelas_7-easy",
+      "name": "Kelas 7 - Mudah",
+      "icon": "📖",
+      "level": "easy",
+      "soal": [
+        {
+          "q": "Students study in a ___.",
+          "opts": [
+            "classroom",
+            "kitchen",
+            "bedroom",
+            "bathroom"
+          ],
+          "ans": 0,
+          "exp": "Classroom = ruang kelas."
+        },
+        {
+          "q": "We borrow books from the ___.",
+          "opts": [
+            "library",
+            "canteen",
+            "field",
+            "toilet"
+          ],
+          "ans": 0,
+          "exp": "Library = perpustakaan."
+        },
+        {
+          "q": "We eat lunch in the ___.",
+          "opts": [
+            "canteen",
+            "library",
+            "lab",
+            "office"
+          ],
+          "ans": 0,
+          "exp": "Canteen = kantin."
+        },
+        {
+          "q": "The principal works in the ___.",
+          "opts": [
+            "office",
+            "canteen",
+            "field",
+            "lab"
+          ],
+          "ans": 0,
+          "exp": "Kepsek di kantor."
+        },
+        {
+          "q": "PE class is held on the ___.",
+          "opts": [
+            "field",
+            "classroom",
+            "library",
+            "lab"
+          ],
+          "ans": 0,
+          "exp": "Olahraga di lapangan."
+        },
+        {
+          "q": "'Ruang kelas' in English is ___.",
+          "opts": [
+            "classroom",
+            "bedroom",
+            "bathroom",
+            "kitchen"
+          ],
+          "ans": 0,
+          "exp": "Classroom = ruang kelas."
+        }
+      ]
+    },
+    {
+      "id": "kelas_5-medium",
+      "name": "Kelas 5 - Sedang",
+      "icon": "🐥",
+      "level": "medium",
+      "soal": [
+        {
+          "q": "The elephant is bigger ___ the horse.",
+          "opts": [
+            "than",
+            "then",
+            "that",
+            "this"
+          ],
+          "ans": 0,
+          "exp": "'than' untuk perbandingan."
+        },
+        {
+          "q": "Which uses comparative correctly?",
+          "opts": [
+            "A cat is smaller than a dog",
+            "A cat is small than a dog",
+            "A cat is more small",
+            "A cat is smallest than"
+          ],
+          "ans": 0,
+          "exp": "smaller + than."
+        },
+        {
+          "q": "The superlative of 'tall' is ___.",
+          "opts": [
+            "tallest",
+            "taller",
+            "more tall",
+            "most tall"
+          ],
+          "ans": 0,
+          "exp": "Kata pendek: -est."
+        },
+        {
+          "q": "Choose the correct sentence:",
+          "opts": [
+            "The blue whale is the heaviest animal",
+            "The blue whale is more heavy",
+            "The blue whale is heavier animal",
+            "The blue whale is most heavy"
+          ],
+          "ans": 0,
+          "exp": "heavy -> heaviest."
+        },
+        {
+          "q": "'More beautiful' because it has ___ syllables.",
+          "opts": [
+            "3 or more",
+            "1",
+            "2",
+            "0"
+          ],
+          "ans": 0,
+          "exp": "3+ suku kata: more/most."
+        },
+        {
+          "q": "The comparative of 'big' is ___.",
+          "opts": [
+            "bigger",
+            "biggest",
+            "more big",
+            "most big"
+          ],
+          "ans": 0,
+          "exp": "big -> bigger."
+        },
+        {
+          "q": "The cheetah is ___ than the lion.",
+          "opts": [
+            "faster",
+            "fastest",
+            "more fast",
+            "most fast"
+          ],
+          "ans": 0,
+          "exp": "fast -> faster."
+        },
+        {
+          "q": "The superlative of 'dangerous' is ___.",
+          "opts": [
+            "most dangerous",
+            "dangeroust",
+            "more dangerous",
+            "dangerousest"
+          ],
+          "ans": 0,
+          "exp": "3+ suku: most dangerous."
+        }
+      ]
+    },
+    {
+      "id": "kelas_6-medium",
+      "name": "Kelas 6 - Sedang",
+      "icon": "⭐",
+      "level": "medium",
+      "soal": [
+        {
+          "q": "She ___ to be a doctor.",
+          "opts": [
+            "wants",
+            "want",
+            "wanting",
+            "wanted"
+          ],
+          "ans": 0,
+          "exp": "She -> wants (+s)."
+        },
+        {
+          "q": "A pilot needs to be ___.",
+          "opts": [
+            "brave",
+            "lazy",
+            "sleepy",
+            "angry"
+          ],
+          "ans": 0,
+          "exp": "Pilot harus berani."
+        },
+        {
+          "q": "'What do you want to be?' Answer:",
+          "opts": [
+            "I want to be a teacher",
+            "I am want teacher",
+            "I wanting be teacher",
+            "I to be want teacher"
+          ],
+          "ans": 0,
+          "exp": "I + want + to be + a + profesi."
+        },
+        {
+          "q": "Which profession helps animals?",
+          "opts": [
+            "Veterinarian",
+            "Pilot",
+            "Chef",
+            "Lawyer"
+          ],
+          "ans": 0,
+          "exp": "Veterinarian = dokter hewan."
+        },
+        {
+          "q": "He ___ in a restaurant.",
+          "opts": [
+            "works",
+            "work",
+            "working",
+            "worked"
+          ],
+          "ans": 0,
+          "exp": "He -> works (+s)."
+        },
+        {
+          "q": "An astronaut travels to ___.",
+          "opts": [
+            "space",
+            "sea",
+            "forest",
+            "desert"
+          ],
+          "ans": 0,
+          "exp": "Astronot ke luar angkasa."
+        },
+        {
+          "q": "A nurse ___ patients.",
+          "opts": [
+            "takes care of",
+            "teaches",
+            "flies",
+            "cooks for"
+          ],
+          "ans": 0,
+          "exp": "Perawat merawat pasien."
+        }
+      ]
+    },
+    {
+      "id": "kelas_7-medium",
+      "name": "Kelas 7 - Sedang",
+      "icon": "📚",
+      "level": "medium",
+      "soal": [
+        {
+          "q": "There ___ twenty classrooms.",
+          "opts": [
+            "are",
+            "is",
+            "am",
+            "was"
+          ],
+          "ans": 0,
+          "exp": "Twenty (plural) -> are."
+        },
+        {
+          "q": "The library is ___ the second floor.",
+          "opts": [
+            "on",
+            "in",
+            "at",
+            "to"
+          ],
+          "ans": 0,
+          "exp": "'on' untuk lantai."
+        },
+        {
+          "q": "My school ___ a big field.",
+          "opts": [
+            "has",
+            "have",
+            "having",
+            "had"
+          ],
+          "ans": 0,
+          "exp": "My school (singular) -> has."
+        },
+        {
+          "q": "The lab is ___ to the library.",
+          "opts": [
+            "next",
+            "near",
+            "beside",
+            "front"
+          ],
+          "ans": 0,
+          "exp": "next to = berdekatan."
+        },
+        {
+          "q": "Students must be ___ in the library.",
+          "opts": [
+            "quiet",
+            "loud",
+            "noisy",
+            "running"
+          ],
+          "ans": 0,
+          "exp": "Perpustakaan harus tenang."
+        },
+        {
+          "q": "The office is ___ the 1st and 2nd floor.",
+          "opts": [
+            "between",
+            "on",
+            "in",
+            "at"
+          ],
+          "ans": 0,
+          "exp": "between = di antara."
+        },
+        {
+          "q": "How many ___ are there?",
+          "opts": [
+            "buildings",
+            "building",
+            "builded",
+            "builds"
+          ],
+          "ans": 0,
+          "exp": "How many + plural."
+        },
+        {
+          "q": "We play basketball on the ___.",
+          "opts": [
+            "court",
+            "classroom",
+            "library",
+            "canteen"
+          ],
+          "ans": 0,
+          "exp": "Court = lapangan basket."
+        },
+        {
+          "q": "We do experiments in the ___.",
+          "opts": [
+            "laboratory",
+            "library",
+            "canteen",
+            "field"
+          ],
+          "ans": 0,
+          "exp": "Lab untuk percobaan."
+        },
+        {
+          "q": "There is a canteen ___ the school.",
+          "opts": [
+            "behind",
+            "on",
+            "at",
+            "to"
+          ],
+          "ans": 0,
+          "exp": "behind = di belakang."
+        }
+      ]
+    },
+    {
+      "id": "kelas_5-hard",
+      "name": "Kelas 5 - Sulit",
+      "icon": "🦅",
+      "level": "hard",
+      "soal": [
+        {
+          "q": "Correct comparative form?",
+          "opts": [
+            "Cheetah faster horse",
+            "Cheetah is faster horse",
+            "The cheetah is faster than the horse",
+            "The cheetah is fastest than horse"
+          ],
+          "ans": 2,
+          "exp": "Subject + is + adj-er + than + noun."
+        },
+        {
+          "q": "Superlative for ONE-syllable words?",
+          "opts": [
+            "Add 'more' before",
+            "Add '-est' after",
+            "Add '-er' to end",
+            "Add 'most' before"
+          ],
+          "ans": 1,
+          "exp": "1 suku: tambah -est."
+        },
+        {
+          "q": "'Beautiful' needs 'more' because:",
+          "opts": [
+            "Sounds better",
+            "Has 3+ syllables",
+            "Is irregular",
+            "Teachers prefer it"
+          ],
+          "ans": 1,
+          "exp": "3+ suku kata: more/most."
+        },
+        {
+          "q": "If A > B and B > C, then:",
+          "opts": [
+            "C is biggest",
+            "A is biggest",
+            "B is biggest",
+            "Cannot determine"
+          ],
+          "ans": 1,
+          "exp": "A > B > C -> A terbesar."
+        },
+        {
+          "q": "RIGHT structure?",
+          "opts": [
+            "The tiger more fast than lion",
+            "Tiger is fast than the lion",
+            "The tiger is faster than the lion",
+            "The tiger is more faster"
+          ],
+          "ans": 2,
+          "exp": "Subject + is + comparative + than."
+        },
+        {
+          "q": "'Bad' becomes 'worse' because:",
+          "opts": [
+            "It is irregular",
+            "Sounds better",
+            "Teachers like it",
+            "Rules say so"
+          ],
+          "ans": 0,
+          "exp": "bad -> worse -> worst (irregular)."
+        },
+        {
+          "q": "'Taller than' compares:",
+          "opts": [
+            "Two things at same time",
+            "Quality in two things",
+            "Height in two things",
+            "Age of two things"
+          ],
+          "ans": 2,
+          "exp": "taller than = membandingkan tinggi."
+        },
+        {
+          "q": "'The giraffe is the tallest' means:",
+          "opts": [
+            "More tall than others",
+            "Tallest of all",
+            "Very tall",
+            "Tall but not tallest"
+          ],
+          "ans": 1,
+          "exp": "the tallest = paling tinggi."
+        },
+        {
+          "q": "Lion fast, Eagle very fast, Turtle slow. Fastest?",
+          "opts": [
+            "Lion",
+            "Eagle",
+            "Turtle",
+            "Cannot determine"
+          ],
+          "ans": 1,
+          "exp": "Eagle very fast = fastest."
+        },
+        {
+          "q": "Correct comparative?",
+          "opts": [
+            "My house is bigger my school",
+            "My house is bigger than school",
+            "My house bigger than my school",
+            "My house is bigger than my school"
+          ],
+          "ans": 3,
+          "exp": "Subject + is + comp + than + noun."
+        }
+      ]
+    },
+    {
+      "id": "kelas_6-hard",
+      "name": "Kelas 6 - Sulit",
+      "icon": "💥",
+      "level": "hard",
+      "soal": [
+        {
+          "q": "An engineer's main job:",
+          "opts": [
+            "Teaching",
+            "Building or designing",
+            "Taking care of patients",
+            "Cooking"
+          ],
+          "ans": 1,
+          "exp": "Engineer merancang/membangun."
+        },
+        {
+          "q": "Why become a teacher?",
+          "opts": [
+            "Get famous",
+            "Help students learn",
+            "Earn much money",
+            "Travel"
+          ],
+          "ans": 1,
+          "exp": "Guru mendidik siswa."
+        },
+        {
+          "q": "Complete: 'She ___ to be a pilot.'",
+          "opts": [
+            "am wanting to be",
+            "want to flying",
+            "wants to be a",
+            "want to be a"
+          ],
+          "ans": 2,
+          "exp": "She + wants + to be + a."
+        },
+        {
+          "q": "Error: 'The doctor work in hospital.'",
+          "opts": [
+            "'work' should be 'works'",
+            "Need 'a' before hospital",
+            "'The' unnecessary",
+            "All correct"
+          ],
+          "ans": 0,
+          "exp": "Doctor (singular) -> works."
+        },
+        {
+          "q": "Architects mainly:",
+          "opts": [
+            "Build hospitals",
+            "Design buildings",
+            "Teach classes",
+            "Sell materials"
+          ],
+          "ans": 1,
+          "exp": "Architect merancang bangunan."
+        },
+        {
+          "q": "'want to be' vs 'am':",
+          "opts": [
+            "'Am' is future",
+            "'Want to be' is future plan",
+            "No difference",
+            "Same meaning"
+          ],
+          "ans": 1,
+          "exp": "want to be = rencana masa depan."
+        },
+        {
+          "q": "Why be a pilot? Most important:",
+          "opts": [
+            "Fly high",
+            "Earn salary",
+            "Help people travel safely",
+            "Get famous"
+          ],
+          "ans": 2,
+          "exp": "Pilot: keselamatan utama."
+        },
+        {
+          "q": "Correct: 'There ___ many schools.'",
+          "opts": [
+            "is many schools",
+            "are many school",
+            "are many schools",
+            "is schools many"
+          ],
+          "ans": 2,
+          "exp": "many = plural -> are."
+        },
+        {
+          "q": "Sentence WITH error:",
+          "opts": [
+            "We works in library",
+            "I am a nurse",
+            "He works as teacher",
+            "She likes reading"
+          ],
+          "ans": 0,
+          "exp": "We (plural) -> work."
+        },
+        {
+          "q": "Doctor's main goal?",
+          "opts": [
+            "Become famous",
+            "Save lives and health",
+            "Earn money",
+            "Study science"
+          ],
+          "ans": 1,
+          "exp": "Doctor menyelamatkan nyawa."
+        }
+      ]
+    },
+    {
+      "id": "kelas_7-hard",
+      "name": "Kelas 7 - Sulit",
+      "icon": "🧠",
+      "level": "hard",
+      "soal": [
+        {
+          "q": "Office floor 1, Lab next to office, Library in front of lab. Order?",
+          "opts": [
+            "Office-Lab-Library",
+            "Library-Lab-Office",
+            "Lab-Office-Library",
+            "Library-Office-Lab"
+          ],
+          "ans": 0,
+          "exp": "Office -> Lab -> Library."
+        },
+        {
+          "q": "Error: 'There is many room in school.'",
+          "opts": [
+            "'is' should be 'are'",
+            "'many' wrong",
+            "'room' should be plural",
+            "All of the above"
+          ],
+          "ans": 3,
+          "exp": "3 errors: is->are, room->rooms."
+        },
+        {
+          "q": "'Between the lab and canteen' means:",
+          "opts": [
+            "To the side",
+            "In the middle of both",
+            "Very near one",
+            "Far from both"
+          ],
+          "ans": 1,
+          "exp": "between = di tengah."
+        },
+        {
+          "q": "Canteen floor 1, Lab floor 2, Office near lab. Office at:",
+          "opts": [
+            "Floor 1",
+            "Floor 2",
+            "Floor 3",
+            "Below floor 1"
+          ],
+          "ans": 1,
+          "exp": "Office sebelah lab = floor 2."
+        },
+        {
+          "q": "Preposition: 'in' or 'on'?",
+          "opts": [
+            "'on' for buildings",
+            "'in' for buildings",
+            "'on' for floors, 'in' for rooms",
+            "Both same"
+          ],
+          "ans": 2,
+          "exp": "on = lantai, in = ruangan."
+        },
+        {
+          "q": "Correct about lab:",
+          "opts": [
+            "Laboratory has many equipment",
+            "Laboratory have many equipment",
+            "The laboratory has equipment",
+            "Laboratory equipment has been"
+          ],
+          "ans": 2,
+          "exp": "Laboratory (singular) -> has."
+        },
+        {
+          "q": "Grammatically CORRECT?",
+          "opts": [
+            "There is a classroom a lab and a office",
+            "There is a classroom on a floor",
+            "There are classrooms, a lab, and an office in the school",
+            "There are a classroom and a office"
+          ],
+          "ans": 2,
+          "exp": "There are (plural) + list."
+        },
+        {
+          "q": "Floor 1 canteen, floor 2 lab, floor 3 office. Correct?",
+          "opts": [
+            "All floors have all",
+            "Canteen floor one lab two",
+            "There are canteen on first",
+            "The canteen is on the first floor, the lab on the second, the office on the third"
+          ],
+          "ans": 3,
+          "exp": "Parallel structure."
+        },
+        {
+          "q": "'Between' shows height level?",
+          "opts": [
+            "Yes always",
+            "No, horizontal position only",
+            "Both",
+            "Cannot determine"
+          ],
+          "ans": 1,
+          "exp": "between = posisi horizontal."
+        },
+        {
+          "q": "Which about prepositions is TRUE?",
+          "opts": [
+            "'In' and 'on' same",
+            "'At' can't be location",
+            "'In' for room, 'on' for floor",
+            "All interchangeable"
+          ],
+          "ans": 2,
+          "exp": "in = ruang, on = lantai."
+        }
+      ]
+    }
+  ]
+}

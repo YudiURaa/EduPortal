@@ -1,0 +1,570 @@
+/* ===== EDU-PROJECTOR.CSS - Projector/Classroom Optimized Styles ===== */
+
+/* ===== PROJECTOR MODE (activated via .projector-mode on body) ===== */
+
+body.projector-mode {
+  cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><circle cx="16" cy="16" r="14" fill="%23ff6b6b" stroke="%23fff" stroke-width="3"/></svg>') 16 16, auto;
+  font-size: 20px;
+  overflow: hidden;
+}
+
+body.projector-mode * {
+  cursor: inherit;
+}
+
+/* Big fonts for projector readability */
+body.projector-mode h1 { font-size: 3.5rem !important; }
+body.projector-mode h2 { font-size: 2.8rem !important; }
+body.projector-mode h3 { font-size: 2.2rem !important; }
+body.projector-mode p, body.projector-mode span, body.projector-mode div { font-size: 1.3rem; }
+body.projector-mode .btn, body.projector-mode button { font-size: 1.4rem !important; padding: 16px 32px !important; min-height: 56px; }
+body.projector-mode .btn-primary { font-size: 1.6rem !important; padding: 20px 40px !important; }
+
+/* High contrast for washed-out projectors */
+body.projector-mode {
+  --proj-bg: #0a0a1a;
+  --proj-text: #ffffff;
+  --proj-accent: #00ff88;
+  --proj-danger: #ff4444;
+  --proj-warning: #ffcc00;
+  --proj-card-bg: #1a1a2e;
+  background: var(--proj-bg) !important;
+  color: var(--proj-text) !important;
+}
+
+body.projector-mode .card,
+body.projector-mode .q-card {
+  background: var(--proj-card-bg) !important;
+  border: 2px solid rgba(255,255,255,0.15) !important;
+  box-shadow: 0 0 40px rgba(0,255,136,0.1) !important;
+}
+
+/* Question text extra large */
+body.projector-mode .q-text {
+  font-size: 2rem !important;
+  line-height: 1.5 !important;
+  font-weight: 600 !important;
+  color: #fff !important;
+  padding: 20px 0 !important;
+}
+
+/* Options bigger */
+body.projector-mode .opt-btn {
+  font-size: 1.5rem !important;
+  padding: 18px 24px !important;
+  min-height: 64px !important;
+  border-width: 3px !important;
+}
+
+body.projector-mode .opt-letter {
+  font-size: 1.4rem !important;
+  width: 40px !important;
+  height: 40px !important;
+  line-height: 40px !important;
+}
+
+/* Timer bigger */
+body.projector-mode .q-timer,
+body.projector-mode .timer-display {
+  font-size: 2rem !important;
+  font-weight: 800 !important;
+}
+
+/* Player tabs bigger */
+body.projector-mode .player-tab {
+  font-size: 1.2rem !important;
+  padding: 10px 16px !important;
+}
+
+body.projector-mode .player-score {
+  font-size: 1.3rem !important;
+  font-weight: 800 !important;
+}
+
+/* Board cells bigger numbers */
+body.projector-mode .cell-number {
+  font-size: 0.8rem !important;
+  font-weight: 700 !important;
+}
+
+body.projector-mode .player-piece {
+  font-size: 1.4rem !important;
+}
+
+/* Roll button massive */
+body.projector-mode .roll-main-btn {
+  font-size: 1.8rem !important;
+  padding: 20px 48px !important;
+  min-height: 72px !important;
+}
+
+/* Feedback screen */
+body.projector-mode .fb-icon {
+  font-size: 6rem !important;
+}
+
+body.projector-mode .fb-title {
+  font-size: 3rem !important;
+}
+
+body.projector-mode .fb-sub {
+  font-size: 1.8rem !important;
+}
+
+body.projector-mode .fb-et {
+  font-size: 1.3rem !important;
+}
+
+/* Scoreboard */
+body.projector-mode .sb-row {
+  padding: 16px 20px !important;
+  font-size: 1.3rem !important;
+}
+
+body.projector-mode .sb-score {
+  font-size: 2rem !important;
+}
+
+/* Winner screen */
+body.projector-mode .win-rank-score {
+  font-size: 2.2rem !important;
+}
+
+/* ===== FULLSCREEN BUTTON ===== */
+.projector-toggle {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 99999;
+  background: rgba(0,0,0,0.7);
+  color: #fff;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.projector-toggle:hover {
+  background: rgba(0,255,136,0.2);
+  border-color: #00ff88;
+  transform: scale(1.05);
+}
+
+body.projector-mode .projector-toggle {
+  background: rgba(0,255,136,0.2);
+  border-color: #00ff88;
+}
+
+/* ===== KEYBOARD SHORTCUT HINTS ===== */
+.shortcut-hints {
+  position: fixed;
+  bottom: 12px;
+  left: 12px;
+  z-index: 99998;
+  background: rgba(0,0,0,0.8);
+  color: rgba(255,255,255,0.7);
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-size: 0.8rem;
+  backdrop-filter: blur(8px);
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 280px;
+}
+
+body.projector-mode .shortcut-hints {
+  display: flex;
+}
+
+.shortcut-hints kbd {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-family: monospace;
+  font-size: 0.75rem;
+  margin-right: 6px;
+}
+
+/* ===== COUNTDOWN OVERLAY ===== */
+.countdown-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 100000;
+  background: rgba(0,0,0,0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.countdown-number {
+  font-size: 15rem;
+  font-weight: 900;
+  color: #00ff88;
+  text-shadow: 0 0 60px rgba(0,255,136,0.5);
+  animation: countdown-pulse 1s ease-in-out;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.countdown-text {
+  font-size: 2rem;
+  color: rgba(255,255,255,0.6);
+  margin-top: 20px;
+}
+
+@keyframes countdown-pulse {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ===== LOBBY SCREEN ===== */
+.lobby-screen {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 99990;
+  background: linear-gradient(135deg, #0a0a2e 0%, #1a0a3e 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+  padding: 40px;
+}
+
+.lobby-title {
+  font-size: 4rem;
+  font-weight: 900;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 0 40px rgba(102,126,234,0.5);
+}
+
+.lobby-subtitle {
+  font-size: 1.8rem;
+  color: rgba(255,255,255,0.6);
+  text-align: center;
+}
+
+.lobby-teams {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.lobby-team-card {
+  background: rgba(255,255,255,0.05);
+  border: 3px solid rgba(255,255,255,0.2);
+  border-radius: 20px;
+  padding: 30px 40px;
+  text-align: center;
+  min-width: 180px;
+  transition: all 0.3s;
+}
+
+.lobby-team-card .team-emoji {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.lobby-team-card .team-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.lobby-rules {
+  background: rgba(255,255,255,0.05);
+  border-radius: 16px;
+  padding: 24px 32px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.lobby-rules h3 {
+  color: #00ff88;
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.lobby-rules li {
+  color: rgba(255,255,255,0.8);
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  list-style: none;
+  padding-left: 0;
+}
+
+.lobby-rules li::before {
+  content: "▸ ";
+  color: #00ff88;
+}
+
+.lobby-start-btn {
+  font-size: 2rem !important;
+  padding: 24px 60px !important;
+  background: linear-gradient(135deg, #00ff88, #00cc6a) !important;
+  color: #000 !important;
+  font-weight: 800 !important;
+  border: none !important;
+  border-radius: 16px !important;
+  cursor: pointer;
+  transition: all 0.2s;
+  animation: glow-pulse 2s infinite;
+}
+
+.lobby-start-btn:hover {
+  transform: scale(1.05);
+}
+
+/* ===== TEAM SCOREBOARD (always visible in projector mode) ===== */
+.team-scoreboard-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 99995;
+  background: rgba(0,0,0,0.9);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 8px 20px;
+  border-bottom: 2px solid rgba(255,255,255,0.1);
+  display: none;
+}
+
+body.projector-mode .team-scoreboard-bar {
+  display: flex;
+}
+
+.tsb-team {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 16px;
+  border-radius: 10px;
+  transition: all 0.3s;
+}
+
+.tsb-team.active {
+  background: rgba(255,255,255,0.1);
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255,255,255,0.1);
+}
+
+.tsb-emoji {
+  font-size: 1.8rem;
+}
+
+.tsb-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.8);
+}
+
+.tsb-score {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #00ff88;
+}
+
+/* ===== CELEBRATION EFFECTS ===== */
+.celebration-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 100001;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.celebration-text {
+  font-size: 5rem;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 0 0 40px rgba(0,255,136,0.8), 0 0 80px rgba(0,255,136,0.4);
+  animation: celebration-pop 1.5s ease-out forwards;
+}
+
+@keyframes celebration-pop {
+  0% { transform: scale(0); opacity: 0; }
+  30% { transform: scale(1.3); opacity: 1; }
+  60% { transform: scale(0.95); }
+  100% { transform: scale(1); opacity: 0; }
+}
+
+/* ===== BUZZER INDICATOR ===== */
+.buzzer-indicator {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100002;
+  font-size: 8rem;
+  animation: buzzer-flash 0.5s ease-out;
+  pointer-events: none;
+}
+
+@keyframes buzzer-flash {
+  0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+  50% { transform: translate(-50%, -50%) scale(1.5); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+}
+
+/* ===== BETWEEN-ROUNDS LEADERBOARD ===== */
+.round-leaderboard {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 99999;
+  background: linear-gradient(135deg, #0a0a2e 0%, #1a0a3e 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 24px;
+  padding: 40px;
+}
+
+.round-leaderboard h2 {
+  font-size: 3rem;
+  color: #fff;
+  text-shadow: 0 0 30px rgba(102,126,234,0.5);
+}
+
+.round-lb-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 16px;
+  padding: 16px 32px;
+  min-width: 400px;
+  transition: all 0.3s;
+}
+
+.round-lb-row:first-child {
+  background: rgba(255,215,0,0.1);
+  border: 2px solid rgba(255,215,0,0.3);
+  transform: scale(1.05);
+}
+
+.round-lb-rank {
+  font-size: 2.5rem;
+}
+
+.round-lb-info {
+  flex: 1;
+}
+
+.round-lb-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.round-lb-stats {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.5);
+}
+
+.round-lb-score {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #00ff88;
+}
+
+/* Adjust board screen when projector mode has scoreboard bar */
+body.projector-mode .board-screen {
+  padding-top: 60px !important;
+}
+
+/* Labirin maze adjustments for projector */
+body.projector-mode .maze-screen {
+  padding-top: 60px !important;
+}
+
+body.projector-mode .mc {
+  width: 28px !important;
+  height: 28px !important;
+  font-size: 0.7rem !important;
+}
+
+body.projector-mode .pm {
+  font-size: 0.9rem !important;
+}
+
+body.projector-mode .maze-topbar {
+  font-size: 1.2rem !important;
+}
+
+body.projector-mode .tb {
+  font-size: 1.1rem !important;
+  padding: 8px 14px !important;
+}
+
+body.projector-mode .dpad-btn {
+  width: 64px !important;
+  height: 64px !important;
+  font-size: 1.5rem !important;
+}
+
+/* Question screen for Labirin */
+body.projector-mode .q-screen .q-card {
+  max-width: 700px !important;
+}
+
+body.projector-mode .q-screen .q-text,
+body.projector-mode .q-card .q-text {
+  font-size: 2rem !important;
+  line-height: 1.5 !important;
+}
+
+body.projector-mode .q-screen .opt-btn {
+  font-size: 1.5rem !important;
+  padding: 18px 24px !important;
+}
+
+/* Feedback screen bigger */
+body.projector-mode .fb-icon {
+  font-size: 6rem !important;
+}
+
+body.projector-mode .fb-title {
+  font-size: 3rem !important;
+}
+
+body.projector-mode .fb-sub {
+  font-size: 1.8rem !important;
+}
+
+body.projector-mode .fb-et,
+body.projector-mode .fb-explain {
+  font-size: 1.3rem !important;
+}
+
+/* ===== RESPONSIVE: ensure projector mode works on various resolutions ===== */
+@media (min-width: 1920px) {
+  body.projector-mode { font-size: 24px; }
+  body.projector-mode .q-text { font-size: 2.5rem !important; }
+  body.projector-mode .opt-btn { font-size: 1.8rem !important; }
+}
+
+@media (max-width: 1366px) {
+  body.projector-mode { font-size: 18px; }
+  body.projector-mode .countdown-number { font-size: 10rem; }
+  body.projector-mode .lobby-title { font-size: 3rem; }
+}
