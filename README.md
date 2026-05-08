@@ -1,303 +1,107 @@
-# EduPortal - Game Edukasi Interaktif
+# 🎮 EduPortal - Game Edukasi Interaktif
 
-Platform game edukasi berbasis web untuk siswa SD, SMP, dan SMA/SMK.  
-Zero dependencies. Tanpa build step. Buka file langsung di browser.
+<div align="center">
+
+![EduPortal](https://img.shields.io/badge/EduPortal-v2.0-6c5ce7?style=for-the-badge)
+![Zero Dependencies](https://img.shields.io/badge/Dependencies-Zero-00b894?style=for-the-badge)
+![Games](https://img.shields.io/badge/Games-2%20Live-fd79a8?style=for-the-badge)
+![Soal](https://img.shields.io/badge/Soal-188-f39c12?style=for-the-badge)
+
+**Platform game edukasi berbasis web untuk siswa SD, SMP, dan SMA/SMK.**  
+Zero dependencies. Tanpa build step. Buka file langsung di browser.  
+**Projector-optimized untuk penggunaan di kelas.**
+
+</div>
 
 ---
 
-## Arsitektur
+## ✨ Fitur Utama
+
+| Fitur | Keterangan |
+|-------|------------|
+| 🎲 **Ular Tangga Edukasi** | Board game 10x10 dengan dadu 3D, soal di setiap petak |
+| 🏰 **Labirin Pengetahuan** | Maze game dengan fog of war, power-ups, dan soal Bahasa Inggris |
+| 📺 **Projector Mode** | Font besar, high contrast, fullscreen — optimized untuk proyektor kelas |
+| ⌨️ **Keyboard Shortcuts** | 1-4 jawab, Space roll dadu, P pause, S skor |
+| 🎯 **Lobby + Countdown** | Tampilan tunggu + countdown 3-2-1-GO sebelum mulai |
+| 🏆 **Team Scoreboard** | Always visible di atas layar saat projector mode |
+| 🔥 **Combo System** | Streak jawaban benar = bonus poin (2x, 3x) |
+| ⚡ **Power-ups** | 2x Poin, Skip, Shield, Hint |
+| 📋 **Soal Sequence** | Tipe soal urutan langkah (partial scoring) |
+| 🎨 **3 Tema Adaptif** | SD (colorful), SMP (modern), SMA (sleek) |
+| 📂 **Upload Soal** | Custom soal via JSON upload (localStorage) |
+| 🔊 **Audio Feedback** | Web Audio API, auto-boost di projector mode |
+
+---
+
+## 📺 Projector Mode (Classroom Setup)
+
+Dirancang untuk setup: **Laptop → Proyektor → Siswa main bareng pakai wireless mouse/keyboard**
+
+### Cara Aktivasi
+1. Klik tombol **📺 Projector** di kanan atas, atau tekan **F11**
+2. Otomatis: font membesar, warna high-contrast, fullscreen, cursor besar
+
+### Keyboard Shortcuts
+
+| Key | Fungsi |
+|-----|--------|
+| `1` `2` `3` `4` | Pilih jawaban A/B/C/D |
+| `Space` | Lempar dadu / Lanjut |
+| `Enter` | Konfirmasi |
+| `R` | Roll dadu (alternatif) |
+| `P` | Pause game |
+| `S` | Lihat scoreboard |
+| `Esc` | Tutup overlay |
+| `F11` | Toggle projector mode |
+
+### Classroom Features
+- **Lobby Screen** — Tampilan tunggu sebelum mulai, lihat tim + rules
+- **Countdown 3-2-1-GO!** — Build suspense
+- **Team Scoreboard Bar** — Skor semua tim always visible di atas
+- **Celebration Animation** — Efek besar saat combo x3/x5
+- **Sound Boost 2x** — Volume otomatis naik untuk 1 kelas
+
+---
+
+## 🏗️ Arsitektur
 
 ```
 EduPortal/
 ├── index.html                              Portal utama (game catalog)
 ├── README.md
 │
-├── shared/                                 Shared libraries (reusable semua game)
-│   ├── edu-soal.js         [15 KB]        Question loader, uploader, validator v2
+├── shared/                                 Shared libraries
+│   ├── edu-soal.js         [15 KB]        Question loader, uploader, validator
 │   ├── edu-soal.css        [4 KB]         Styling uploader component
-│   ├── edu-sequence.js     [5.5 KB]       Interactive sequencing (tipe soal urutan)
+│   ├── edu-sequence.js     [5.5 KB]       Interactive sequencing
 │   ├── edu-sequence.css    [4.6 KB]       Styling sequence component
 │   ├── edu-theme.js        [4.4 KB]       Adaptive theme system (3 jenjang)
-│   └── edu-theme.css       [4.4 KB]       CSS variables per tema
+│   ├── edu-theme.css       [4.4 KB]       CSS variables per tema
+│   ├── edu-projector.js    [12 KB]        Projector mode + keyboard shortcuts
+│   └── edu-projector.css   [11 KB]        Projector/classroom styles
 │
 ├── Ular Tanga Edukasi/                     Game 1: Ular Tangga
-│   ├── index.html                          Entry point
-│   ├── data/
-│   │   ├── soal.json       [18 KB]        118 soal, 11 kategori
-│   │   ├── board-config.json               Konfigurasi papan
-│   │   └── tutorial.md                     Panduan edit soal
-│   ├── js/
-│   │   ├── data.js                         Embedded soal (file:// fallback)
-│   │   ├── game.js                         Game logic, state machine
-│   │   ├── ui.js                           UI renderer (semua screen)
-│   │   ├── dice-3d.js                      Three.js dadu 3D (top-down view)
-│   │   ├── questions.js                    QuestionManager (wrapper EduSoal)
-│   │   ├── audio.js                        Web Audio API sound system
-│   │   ├── storage.js                      LocalStorage save/load
-│   │   └── main.js                         Entry point, keyboard/touch
-│   ├── css/
-│   │   ├── main.css                        Base styles
-│   │   ├── board.css                       Board layout (responsive fullscreen)
-│   │   ├── components.css                  UI components
-│   │   └── dice-3d.css                     Dice overlay
-│   └── lib/
-│       └── three.min.js    [603 KB]        Three.js (lokal, bukan CDN)
+│   ├── index.html
+│   ├── data/soal.json      [18 KB]        118 soal, 11 kategori
+│   ├── js/ (8 files)                      Game logic, UI, audio, dice 3D
+│   ├── css/ (4 files)                     Responsive styles
+│   └── lib/three.min.js   [603 KB]        Three.js (lokal)
 │
 └── Labirin Bahasa Inggris/                 Game 2: Labirin
     ├── labirin bahasa inggris.html         Single-file game
-    └── data/
-        └── soal.json       [21 KB]         70 soal, 9 kategori
+    └── data/soal.json      [21 KB]        70 soal, 9 kategori
 ```
 
 ---
 
-## Workflow: Cara Kerja Sistem
-
-```
-┌─────────────────────────────────────────────────────────┐
-│                    PORTAL (index.html)                    │
-│  - Catalog semua game                                    │
-│  - Fetch soal.json tiap game → hitung total soal         │
-│  - Filter, search, stats                                 │
-└────────────────────────┬────────────────────────────────┘
-                         │
-         ┌───────────────┼───────────────┐
-         ▼               ▼               ▼
-┌─────────────┐  ┌─────────────┐  ┌─────────────┐
-│ Game 1      │  │ Game 2      │  │ Game N...   │
-│ Ular Tangga │  │ Labirin     │  │ (future)    │
-└──────┬──────┘  └──────┬──────┘  └──────┬──────┘
-       │                │                │
-       ▼                ▼                ▼
-┌─────────────────────────────────────────────────────────┐
-│                  SHARED LIBRARIES                         │
-│                                                          │
-│  edu-soal.js ─── Load soal, upload, validate, filter     │
-│  edu-sequence.js ─── Tipe soal urutan langkah            │
-│  edu-theme.js ─── Tema adaptif per jenjang               │
-└─────────────────────────────────────────────────────────┘
-```
-
-### Data Flow per Game
-
-```
-1. Game load
-   ├── Check localStorage (custom uploaded soal?)
-   │   └── YES → parse & use
-   │   └── NO ──┐
-   │             ├── Check embedded data (js/data.js)
-   │             │   └── YES → parse & use (file:// protocol)
-   │             │   └── NO ──┐
-   │             │             └── Fetch data/soal.json (http/https)
-   │             │                 └── YES → parse & use
-   │             │                 └── NO → fallback minimal
-   │
-2. Game play
-   ├── getQuestion() → random dari pool (shuffled)
-   ├── type === 'choice' → render pilihan ganda
-   ├── type === 'sequence' → render EduSequence component
-   │
-3. Scoring
-   ├── Choice: benar = +poin, salah = mundur ke preRollPosition
-   ├── Sequence: partial scoring
-   │   ├── 100% benar = full poin + combo
-   │   ├── >= 70% benar = poin proporsional, tetap di posisi
-   │   └── < 70% = mundur ke preRollPosition
-```
-
----
-
-## Format Soal v2
-
-Setiap game punya `data/soal.json` sendiri. Format standar:
-
-```json
-{
-  "config": {
-    "title": "Nama Bank Soal",
-    "description": "Deskripsi"
-  },
-  "categories": [
-    {
-      "id": "aljabar_smp",
-      "name": "Aljabar",
-      "icon": "🔤",
-      "level": "hard",
-      "sub_level": "hots",
-      "tags": ["aljabar", "persamaan"],
-      "target": "Kelas 7-9",
-      "soal": [
-        {
-          "q": "Jika 3x + 7 = 22, maka x = ?",
-          "opts": ["3", "4", "5", "6"],
-          "ans": 2,
-          "exp": "3x = 15, x = 5",
-          "image_url": "",
-          "tags": ["linear"]
-        },
-        {
-          "q": "Urutkan langkah menyelesaikan 2x + 4 = 10:",
-          "type": "sequence",
-          "steps": [
-            "Kurangi 4 dari kedua ruas: 2x = 6",
-            "Bagi kedua ruas dengan 2: x = 3",
-            "Cek: 2(3) + 4 = 10 ✓"
-          ],
-          "exp": "Isolasi variabel step by step."
-        }
-      ]
-    }
-  ]
-}
-```
-
-### Field Reference
-
-| Field | Level | Wajib | Keterangan |
-|-------|-------|-------|------------|
-| `id` | Kategori | Ya | ID unik (huruf kecil, underscore) |
-| `name` | Kategori | Ya | Nama tampilan |
-| `icon` | Kategori | Ya | Emoji |
-| `level` | Kategori | Ya | `"easy"` / `"medium"` / `"hard"` |
-| `sub_level` | Kategori | Tidak | `"teori"` / `"praktikum"` / `"hots"` |
-| `tags` | Kategori | Tidak | Array string untuk filter |
-| `target` | Kategori | Tidak | Target jenjang (e.g. "Kelas 7-9") |
-| `q` | Soal | Ya | Teks pertanyaan |
-| `type` | Soal | Tidak | `"choice"` (default) / `"sequence"` |
-| `opts` | Soal | Choice | Array 4 pilihan |
-| `ans` | Soal | Choice | Index jawaban (0-3) |
-| `steps` | Soal | Sequence | Array langkah urutan benar |
-| `exp` | Soal | Ya | Penjelasan jawaban |
-| `image_url` | Soal | Tidak | URL gambar/diagram |
-| `tags` | Soal | Tidak | Tags per soal (merge dengan kategori) |
-
-### Scoring
-
-| Level | Poin | Combo x3 | Combo x5 |
-|-------|------|----------|----------|
-| Easy | +10 | +20 | +30 |
-| Medium | +20 | +40 | +60 |
-| Hard | +30 | +60 | +90 |
-
-Sequence partial: `poin = basePoints × (correctSteps / totalSteps)`
-
----
-
-## Shared Libraries API
-
-### edu-soal.js
-
-```js
-const loader = new EduSoal({ storageKey: 'nama-game' });
-await loader.init(embeddedData, 'data/soal.json');
-
-// Core
-loader.getQuestion()                    // Random soal dari pool
-loader.getDifficulty(q)                 // 'easy' | 'medium' | 'hard'
-loader.getPoints(difficulty)            // 10 | 20 | 30
-loader.shuffleOptions(q)                // Acak pilihan jawaban
-
-// Filter & Search
-loader.getQuestionsByTag('aljabar')     // Filter by tag
-loader.getQuestionsByTarget('Kelas 7')  // Filter by target
-loader.getQuestionsByType('sequence')   // Filter by type
-loader.getQuestionsBySubLevel('hots')   // Filter by sub_level
-loader.getAllTags()                      // {tag: count, ...}
-
-// Sequence
-loader.scoreSequence(q, userOrder)      // {score, total, percent, correct, details}
-
-// Upload & Manage
-loader.uploadJSON(file, callback)       // Upload + validate + save
-loader.hasUploaded()                    // Boolean
-loader.clearUploaded()                  // Reset ke default
-loader.mountUploader(element)           // Render upload UI
-```
-
-### edu-sequence.js
-
-```js
-new EduSequence(container, question, function(result) {
-  // result.score    → jumlah posisi benar
-  // result.total    → total langkah
-  // result.percent  → persentase benar
-  // result.correct  → boolean (100% benar?)
-  // result.details  → [{step, userStep, correct}, ...]
-  // result.userOrder → array urutan user
-});
-```
-
-### edu-theme.js
-
-```js
-EduTheme.set('sd')                      // Set tema aktif
-EduTheme.get()                          // 'sd' | 'smp' | 'sma'
-EduTheme.init()                         // Auto-apply dari localStorage
-EduTheme.detectFromTarget('Kelas 5')    // → 'sd'
-EduTheme.mountPicker(element)           // Full picker (3 opsi)
-EduTheme.mountCompactPicker(element)    // Compact (icon only)
-```
-
-CSS variables per tema:
-```css
-var(--t-bg)          /* Background */
-var(--t-bg-card)     /* Card background */
-var(--t-text)        /* Text color */
-var(--t-text-muted)  /* Muted text */
-var(--t-primary)     /* Primary accent */
-var(--t-secondary)   /* Secondary accent */
-var(--t-success)     /* Green */
-var(--t-danger)      /* Red */
-var(--t-radius)      /* Border radius */
-var(--t-radius-sm)   /* Small radius */
-var(--t-shadow)      /* Box shadow */
-var(--t-gradient)    /* Gradient */
-```
-
----
-
-## Improvement Roadmap
-
-### Done
-
-| # | Improvement | Status |
-|---|-------------|--------|
-| 1 | Tagging system (tags, sub_level, target per kategori & soal) | ✅ |
-| 2 | Image/asset support (image_url field) | ✅ |
-| 3 | Interactive Sequencing (tipe soal urutan langkah) | ✅ |
-| 4 | Partial scoring untuk sequence (>= 70% = poin proporsional) | ✅ |
-| 5 | UI Adaptif per jenjang (3 tema: SD/SMP/SMA) | ✅ |
-| 6 | Soal per game (masing-masing punya soal.json sendiri) | ✅ |
-| 7 | Upload soal via web (localStorage) | ✅ |
-| 8 | Portal fetch total soal dinamis dari tiap game | ✅ |
-| 9 | Download template soal JSON | ✅ |
-| 10 | Dadu 3D top-down view (Three.js) | ✅ |
-| 11 | Board responsive fullscreen | ✅ |
-| 12 | Soal setiap langkah (salah = mundur ke awal) | ✅ |
-
-### Backlog (Future)
-
-| # | Improvement | Priority | Effort |
-|---|-------------|----------|--------|
-| 1 | Backend (Supabase/Firebase) - cloud sync, leaderboard global | High | Large |
-| 2 | Teacher Dashboard - monitor progres siswa | High | Large |
-| 3 | Code Sandbox (HTML/CSS checker) untuk IT/TKJ | Medium | Medium |
-| 4 | Video embed di soal (video_embed field) | Medium | Small |
-| 5 | Multiplayer online (WebSocket) | Low | Large |
-| 6 | PWA (offline support, install) | Medium | Medium |
-| 7 | Achievement system (badges, streak) | Low | Small |
-| 8 | Accessibility (screen reader, high contrast) | Medium | Medium |
-| 9 | Analytics (soal mana yang paling sering salah) | Medium | Medium |
-| 10 | Export progress ke PDF/Excel | Low | Small |
-
----
-
-## Cara Menjalankan
+## 🚀 Cara Menjalankan
 
 ### Tanpa server (file://)
-Buka `index.html` langsung di browser. Semua fitur jalan kecuali:
-- Portal fetch soal count (pakai angka statis)
-- CORS warning di console (bisa diabaikan)
+```
+Buka index.html langsung di browser.
+Semua fitur jalan kecuali fetch soal count di portal.
+```
 
 ### Dengan local server (recommended)
 ```bash
@@ -307,82 +111,94 @@ python -m http.server 8000
 # Node.js
 npx serve .
 
-# VS Code: install "Live Server" extension → Go Live
+# VS Code: Live Server extension → Go Live
 ```
-Buka `http://localhost:8000`
 
 ---
 
-## Cara Tambah Game Baru
+## 📝 Format Soal
 
-```bash
-# 1. Buat folder
-mkdir "Nama Game Baru"
-mkdir "Nama Game Baru/data"
+Setiap game punya `data/soal.json` sendiri:
 
-# 2. Buat soal.json (copy template atau download dari game lain)
-# 3. Buat game HTML/JS
-```
-
-Include di HTML:
-```html
-<!-- Shared -->
-<link rel="stylesheet" href="../shared/edu-soal.css">
-<link rel="stylesheet" href="../shared/edu-sequence.css">
-<link rel="stylesheet" href="../shared/edu-theme.css">
-<script src="../shared/edu-soal.js"></script>
-<script src="../shared/edu-sequence.js"></script>
-<script src="../shared/edu-theme.js"></script>
-```
-
-Init di JS:
-```js
-// Load soal
-const loader = new EduSoal({ storageKey: 'nama-game-unik' });
-await loader.init(EMBEDDED_DATA, 'data/soal.json');
-
-// Get soal
-const q = loader.getQuestion();
-if (q.type === 'sequence') {
-  new EduSequence(container, q, handleResult);
-} else {
-  renderMultipleChoice(q);
+```json
+{
+  "categories": [
+    {
+      "id": "aljabar_smp",
+      "name": "Aljabar",
+      "icon": "🔤",
+      "level": "hard",
+      "target": "Kelas 7-9",
+      "soal": [
+        {
+          "q": "Jika 3x + 7 = 22, maka x = ?",
+          "opts": ["3", "4", "5", "6"],
+          "ans": 2,
+          "exp": "3x = 15, x = 5"
+        },
+        {
+          "q": "Urutkan langkah menyelesaikan 2x + 4 = 10:",
+          "type": "sequence",
+          "steps": ["Kurangi 4", "Bagi 2", "Cek jawaban"],
+          "exp": "Isolasi variabel step by step."
+        }
+      ]
+    }
+  ]
 }
 ```
 
-Register di portal `index.html`:
-```js
-// Tambah di array GAME_SOAL_PATHS
-{ path: 'Nama Game Baru/data/soal.json', card: 'Nama Game Baru' }
-```
+### Scoring
+
+| Level | Poin | Combo x3 | Combo x5 |
+|-------|------|----------|----------|
+| Easy | +10 | +20 | +30 |
+| Medium | +20 | +40 | +60 |
+| Hard | +30 | +60 | +90 |
 
 ---
 
-## Teknologi
+## 🛠️ Teknologi
 
-| Layer | Tech | Keterangan |
-|-------|------|------------|
-| Frontend | HTML5, CSS3, Vanilla JS | Zero framework |
-| 3D | Three.js (lokal) | Dadu 3D di Ular Tangga |
-| Audio | Web Audio API | Sound effects procedural |
-| Storage | LocalStorage | Save progress, custom soal, tema |
-| Layout | CSS Grid, Flexbox, vmin | Responsive tanpa media query library |
-| Protocol | file:// + http:// | Dual support |
+| Layer | Tech |
+|-------|------|
+| Frontend | HTML5, CSS3, Vanilla JS |
+| 3D | Three.js (dadu 3D) |
+| Audio | Web Audio API (procedural) |
+| Storage | LocalStorage |
+| Layout | CSS Grid, Flexbox, vmin |
+| Protocol | file:// + http:// dual support |
 
-**Total size: ~950 KB** (600 KB = Three.js, sisanya ~350 KB kode + data)
+**Total size: ~950 KB** (600 KB Three.js, 350 KB kode + data)
 
 ---
 
-## Stats
+## 📊 Stats
 
 | Metric | Value |
 |--------|-------|
-| Total game | 2 (live) |
+| Total games | 2 (live) |
 | Total soal | 188 |
 | Total kategori | 20 |
 | Tipe soal | 2 (choice + sequence) |
-| Shared libraries | 6 files |
+| Shared libraries | 8 files |
 | Tema | 3 (SD/SMP/SMA) |
 | Max pemain | 4 |
 | Build step | None |
-| Dependencies | None (vanilla) |
+| Dependencies | None |
+
+---
+
+## 📜 License
+
+MIT — Free to use for educational purposes.
+
+---
+
+<div align="center">
+
+**Made with ❤️ for Indonesian students**
+
+🎲 Belajar Seru, Main Asyik! 🎲
+
+</div>
