@@ -64,17 +64,12 @@ class UI {
       '<button class="btn-ghost" onclick="ui.showSoalManager()">\u{1F4C2} Kelola Soal</button>' +
       '<button class="btn-ghost" onclick="audio.init();audio.toggle();this.textContent=audio.enabled?\'\u{1F50A} ON\':\'\u{1F507} OFF\'">\u{1F50A} ON</button>' +
       '<a href="../index.html" class="btn-ghost">\u{1F3E0} Portal</a></div>' +
-      '<div id="theme-picker-home" style="margin-top:20px"></div>' +
-      '<div style="margin-top:16px;display:flex;gap:16px;justify-content:center;font-size:1.8rem">' +
+            '<div style="margin-top:16px;display:flex;gap:16px;justify-content:center;font-size:1.8rem">' +
       '<span class="float-anim">\u{1F40D}</span><span class="float-anim" style="animation-delay:0.4s">\u{1FA9C}</span>' +
       '<span class="float-anim" style="animation-delay:0.8s">\u2B50</span><span class="float-anim" style="animation-delay:1.2s">\u{1F3C6}</span>' +
       '</div></div></div>';
 
-    // Mount compact theme picker
-    var tpEl = document.getElementById('theme-picker-home');
-    if (tpEl && typeof EduTheme !== 'undefined') {
-      EduTheme.mountCompactPicker(tpEl);
-    }
+
   }
 
   showSoalManager() {

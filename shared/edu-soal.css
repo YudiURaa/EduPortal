@@ -1,77 +1,93 @@
-/* ===== EDU-SOAL UPLOADER COMPONENT ===== */
+/* edu-soal.css - EduSoal Uploader UI Styles */
+
 .edu-soal-uploader {
-  background: rgba(20, 20, 42, 0.95);
-  border: 1px solid rgba(108, 92, 231, 0.3);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 16px;
-  padding: 20px;
-  max-width: 500px;
-  margin: 0 auto;
-  font-family: 'Nunito', sans-serif;
+  padding: 24px;
+  font-family: inherit;
 }
 
 .esu-header {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 
-.esu-icon { font-size: 1.5rem; }
+.esu-icon {
+  font-size: 1.8rem;
+}
 
 .esu-title {
-  font-size: 1.1rem;
-  font-weight: 800;
+  font-size: 1.4rem;
+  font-weight: 700;
   color: #fff;
 }
 
 .esu-stats {
   display: flex;
-  gap: 10px;
   flex-wrap: wrap;
+  gap: 10px;
   margin-bottom: 16px;
 }
 
 .esu-stat {
-  background: rgba(255, 255, 255, 0.08);
-  padding: 4px 12px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 6px 12px;
   border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.85rem;
+  color: #c3b8e8;
 }
 
 .esu-stat.esu-custom {
-  background: rgba(108, 92, 231, 0.3);
-  color: #a29bfe;
+  background: rgba(102, 126, 234, 0.3);
+  color: #a78bfa;
+}
+
+.esu-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.esu-tag {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  color: #a0a0c0;
+}
+
+.esu-tag small {
+  opacity: 0.6;
 }
 
 .esu-actions {
   display: flex;
-  gap: 8px;
   flex-wrap: wrap;
-  margin-bottom: 12px;
+  gap: 10px;
+  margin-bottom: 16px;
 }
 
 .esu-btn {
-  padding: 8px 16px;
+  padding: 10px 20px;
   border-radius: 10px;
-  font-size: 0.8rem;
-  font-weight: 700;
+  font-size: 0.9rem;
+  font-weight: 600;
   cursor: pointer;
   border: none;
-  font-family: inherit;
   transition: all 0.2s;
 }
 
 .esu-btn-upload {
-  background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+  background: linear-gradient(135deg, #667eea, #764ba2);
   color: #fff;
-  display: inline-block;
 }
 
 .esu-btn-upload:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 15px rgba(108, 92, 231, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
 }
 
 .esu-btn-reset {
@@ -85,156 +101,127 @@
 }
 
 .esu-btn-download {
-  background: rgba(0, 206, 201, 0.15);
-  color: #00cec9;
-  border: 1px solid rgba(0, 206, 201, 0.3);
+  background: rgba(46, 204, 113, 0.2);
+  color: #2ecc71;
+  border: 1px solid rgba(46, 204, 113, 0.3);
 }
 
 .esu-btn-download:hover {
-  background: rgba(0, 206, 201, 0.25);
+  background: rgba(46, 204, 113, 0.3);
 }
 
-.esu-message { margin-bottom: 12px; }
+.esu-message {
+  margin-bottom: 16px;
+}
 
 .esu-success {
-  background: rgba(0, 184, 148, 0.15);
-  border: 1px solid rgba(0, 184, 148, 0.3);
-  color: #00b894;
-  padding: 10px 14px;
+  background: rgba(46, 204, 113, 0.2);
+  color: #2ecc71;
+  padding: 10px 16px;
   border-radius: 10px;
-  font-size: 0.85rem;
-  font-weight: 700;
+  font-size: 0.9rem;
 }
 
 .esu-error {
-  background: rgba(231, 76, 60, 0.15);
-  border: 1px solid rgba(231, 76, 60, 0.3);
+  background: rgba(231, 76, 60, 0.2);
   color: #e74c3c;
-  padding: 10px 14px;
+  padding: 10px 16px;
   border-radius: 10px;
-  font-size: 0.85rem;
-  font-weight: 700;
-  white-space: pre-line;
+  font-size: 0.9rem;
 }
 
 .esu-categories {
-  max-height: 200px;
-  overflow-y: auto;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-  padding-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .esu-cat {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 10px;
-  border-radius: 8px;
-  margin-bottom: 4px;
-  background: rgba(255, 255, 255, 0.03);
+  gap: 10px;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
   transition: background 0.2s;
 }
 
 .esu-cat:hover {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.08);
 }
 
-.esu-cat-icon { font-size: 1.1rem; }
+.esu-cat-icon {
+  font-size: 1.3rem;
+}
 
 .esu-cat-name {
   flex: 1;
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
+  color: #e0e0f0;
+}
+
+.esu-cat-target {
+  font-size: 0.75rem;
+  color: #a0a0c0;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 2px 8px;
+  border-radius: 8px;
 }
 
 .esu-cat-count {
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.85rem;
+  color: #a78bfa;
+  font-weight: 600;
 }
 
 .esu-cat-level {
-  font-size: 0.65rem;
-  font-weight: 800;
-  color: #fff;
-  padding: 2px 8px;
-  border-radius: 10px;
-}
-
-/* Light mode support */
-body.light-mode .edu-soal-uploader,
-.light .edu-soal-uploader {
-  background: #fff;
-  border-color: rgba(0, 0, 0, 0.08);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-}
-
-body.light-mode .esu-title,
-.light .esu-title { color: #2d3436; }
-
-body.light-mode .esu-stat,
-.light .esu-stat {
-  background: rgba(0, 0, 0, 0.05);
-  color: #555;
-}
-
-body.light-mode .esu-cat-name,
-.light .esu-cat-name { color: #333; }
-
-body.light-mode .esu-cat,
-.light .esu-cat { background: rgba(0, 0, 0, 0.02); }
-
-/* Tags */
-.esu-tags {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-  margin-bottom: 12px;
-}
-
-.esu-tag {
-  background: rgba(108, 92, 231, 0.15);
-  color: #a29bfe;
-  padding: 3px 10px;
-  border-radius: 12px;
-  font-size: 0.7rem;
-  font-weight: 700;
-}
-
-.esu-tag small { opacity: 0.6; }
-
-.esu-cat-target {
-  font-size: 0.6rem;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.4);
-  background: rgba(255, 255, 255, 0.05);
-  padding: 1px 6px;
+  font-size: 0.75rem;
+  padding: 3px 8px;
   border-radius: 6px;
+  color: #fff;
+  font-weight: 600;
 }
 
-body.light-mode .esu-tag,
-.light .esu-tag {
-  background: rgba(108, 92, 231, 0.1);
-  color: #6c5ce7;
+/* Toast container */
+.toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-/* Keyboard focus styles */
-:focus-visible {
-    outline: 2px solid var(--primary, #6c5ce7);
-    outline-offset: 2px;
+.toast {
+  background: rgba(30, 30, 50, 0.95);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  animation: toast-in 0.3s ease;
 }
 
-button:focus-visible,
-a:focus-visible,
-input:focus-visible,
-select:focus-visible,
-[tabindex]:focus-visible {
-    outline: 2px solid var(--primary, #6c5ce7);
-    outline-offset: 2px;
-    border-radius: 4px;
+.toast.success {
+  border-left: 4px solid #2ecc71;
 }
 
-:focus:not(:focus-visible) {
-    outline: none;
+.toast.error {
+  border-left: 4px solid #e74c3c;
+}
+
+.toast.info {
+  border-left: 4px solid #3498db;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
