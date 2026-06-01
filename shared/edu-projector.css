@@ -568,3 +568,23 @@ body.projector-mode .fb-explain {
   body.projector-mode .countdown-number { font-size: 10rem; }
   body.projector-mode .lobby-title { font-size: 3rem; }
 }
+
+/* Keyboard focus styles */
+:focus-visible {
+    outline: 2px solid var(--primary, #6c5ce7);
+    outline-offset: 2px;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+    outline: 2px solid var(--primary, #6c5ce7);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+:focus:not(:focus-visible) {
+    outline: none;
+}

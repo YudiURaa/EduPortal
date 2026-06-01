@@ -197,7 +197,7 @@ class Dice3D {
     // Random result 1-6
     this.result = Math.floor(Math.random() * 6) + 1;
     
-    console.log('Rolling for result:', this.result);
+    
 
     // Define target rotations for each face to show from top-down view
     // Camera is looking from +Y down toward origin

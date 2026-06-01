@@ -218,3 +218,23 @@ body.light-mode .esu-tag,
   background: rgba(108, 92, 231, 0.1);
   color: #6c5ce7;
 }
+
+/* Keyboard focus styles */
+:focus-visible {
+    outline: 2px solid var(--primary, #6c5ce7);
+    outline-offset: 2px;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+    outline: 2px solid var(--primary, #6c5ce7);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+:focus:not(:focus-visible) {
+    outline: none;
+}

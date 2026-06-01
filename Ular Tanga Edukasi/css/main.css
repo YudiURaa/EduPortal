@@ -225,3 +225,23 @@ h1, h2, h3, .font-display {
 @media (max-width: 480px) {
   .screen { padding: 8px; }
 }
+
+/* Keyboard focus styles */
+:focus-visible {
+    outline: 2px solid var(--primary, #6c5ce7);
+    outline-offset: 2px;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+    outline: 2px solid var(--primary, #6c5ce7);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+:focus:not(:focus-visible) {
+    outline: none;
+}

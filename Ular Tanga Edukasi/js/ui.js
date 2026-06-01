@@ -1,6 +1,19 @@
-﻿// ===== UI.JS - Render Screens =====
+// ===== UI.JS - Render Screens =====
+
 
 class UI {
+  // XSS-safe HTML escaping
+  static _esc(s) {
+    if (!s) return '';
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  // XSS-safe HTML escaping
+  static _esc(str) {
+    if (!str) return '';
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
   constructor() {
     this.app = null;
     this.toastContainer = null;
@@ -267,7 +280,7 @@ class UI {
       '<div class="powerup-bar"><span class="pu-label">POWER-UPS:</span>' + puSlots + comboBadge + '</div>' +
       '<div class="board-area"><div class="board-wrapper">' + snakesHTML + laddersHTML + '<div class="board-grid" id="board-grid">' + cells + '</div></div></div>' +
       '<div class="board-bottom">' +
-        '<div class="turn-info"><span class="turn-char">' + turnChar + '</span><span>' + turnName + '</span></div>' +
+        '<div class="turn-info"><span class="turn-char">' + turnChar + '</span><span>' + UI._esc(turnName) + '</span></div>' +
         '<button class="roll-main-btn" id="roll-btn" onclick="ui.showDiceOverlay()"' + (s.isMoving ? ' disabled' : '') + '>\u{1F3B2} LEMPAR DADU</button>' +
         '<div class="last-roll" id="last-roll">' + lastRoll + '</div>' +
       '</div></div>';
@@ -321,7 +334,7 @@ class UI {
     // NO BOX - dice container is fullscreen without borders
     overlay.innerHTML =
       '<div class="dice-overlay-inner">' +
-      '<div class="dice-overlay-title"><span class="turn-emoji">' + turnChar + '</span> Giliran ' + turnName + '</div>' +
+      '<div class="dice-overlay-title"><span class="turn-emoji">' + turnChar + '</span> Giliran ' + UI._esc(turnName) + '</div>' +
       '<div class="dice-3d-container" id="dice-3d-container"></div>' +
       '<div class="dice-result-big" id="dice-result-big"></div>' +
       '<button class="dice-overlay-roll-btn" id="dice-overlay-roll-btn" onclick="ui.rollDiceFromOverlay()">\u{1F3B2} PUTAR DADU</button>' +
@@ -450,7 +463,7 @@ class UI {
     this.app.innerHTML = '<div class="screen"><div class="q-card slide-up">' +
       '<div class="q-header"><div class="q-badges"><span class="q-badge" style="background:' + color + '">' + stars + ' ' + level + '</span><span class="q-badge" style="background:#6c5ce7">' + q.cat + '</span></div>' +
       '<div class="q-timer' + (game.state.questionTimeLeft<=10?' danger':'') + '" id="q-timer">' + game.state.questionTimeLeft + 's</div></div>' +
-      '<div class="q-team"><span class="qt-char">' + game.CHARS[game.state.playerChars[pi]] + '</span><span class="qt-name">' + game.state.players[pi] + '</span>' + comboBadge + '</div>' +
+      '<div class="q-team"><span class="qt-char">' + game.CHARS[game.state.playerChars[pi]] + '</span><span class="qt-name">' + UI._esc(game.state.players[pi]) + '</span>' + comboBadge + '</div>' +
       '<div class="q-text">' + q.q + '</div>' +
       '<div class="q-opts">' + opts + '</div>' +
       '<div class="q-actions">' + actions + '</div></div></div>';
@@ -470,7 +483,7 @@ class UI {
 
     this.app.innerHTML = '<div class="screen"><div class="q-card slide-up" style="max-width:520px">' +
       '<div class="q-header"><div class="q-badges"><span class="q-badge" style="background:' + color + '">' + stars + ' ' + level + '</span><span class="q-badge" style="background:#6c5ce7">' + (q.cat || 'Urutan') + '</span><span class="q-badge" style="background:#00cec9">\u{1F4CB} Urutan</span></div></div>' +
-      '<div class="q-team"><span class="qt-char">' + turnChar + '</span><span class="qt-name">' + turnName + '</span></div>' +
+      '<div class="q-team"><span class="qt-char">' + turnChar + '</span><span class="qt-name">' + UI._esc(turnName) + '</span></div>' +
       '<div id="seq-container"></div>' +
       '<div style="margin-top:12px;text-align:center"><button class="q-act-surr" onclick="ui.surrenderSequence()">\u{1F62D} Nyerah</button></div>' +
       '</div></div>';

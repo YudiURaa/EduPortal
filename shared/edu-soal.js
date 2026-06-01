@@ -31,7 +31,7 @@ class EduSoal {
     var uploaded = this._loadFromStorage();
     if (uploaded) {
       this._parse(uploaded);
-      console.log('[EduSoal] Loaded from localStorage (' + this._total() + ' soal)');
+      
       return true;
     }
     // 2. Embedded data
@@ -51,7 +51,7 @@ class EduSoal {
         }
       } catch (e) { /* ignore */ }
     }
-    console.warn('[EduSoal] No data loaded');
+    
     return false;
   }
 
