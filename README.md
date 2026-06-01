@@ -1,7 +1,17 @@
-# 🎮 EduPortal — Game Edukasi untuk Kelas
+<div align="center">
 
-**Platform game edukasi gratis untuk siswa SD, SMP, dan SMA/SMK.**  
-Buka langsung di browser. Tanpa install. Tanpa internet.
+# 🎮 EduPortal — Game Edukasi Interaktif
+
+![EduPortal](https://img.shields.io/badge/EduPortal-v0.1.0-6c5ce7?style=for-the-badge)
+![Zero Dependencies](https://img.shields.io/badge/Dependencies-Zero-00b894?style=for-the-badge)
+![Games](https://img.shields.io/badge/Games-2%20Live-fd79a8?style=for-the-badge)
+![Soal](https://img.shields.io/badge/Soal-188-f39c12?style=for-the-badge)
+
+**Platform game edukasi berbasis web untuk siswa SD, SMP, dan SMA/SMK.**  
+Buka langsung di browser. Tanpa install. Tanpa internet.  
+**Projector-optimized untuk penggunaan di kelas.**
+
+</div>
 
 ---
 
@@ -10,8 +20,8 @@ Buka langsung di browser. Tanpa install. Tanpa internet.
 EduPortal adalah kumpulan game edukasi interaktif yang bisa dipakai guru di kelas menggunakan proyektor. Siswa bermain sambil belajar — menjawab soal, mengumpulkan poin, dan bersaing secara tim.
 
 **2 Game tersedia:**
-- 🎲 **Ular Tangga Edukasi** — Board game klasik + soal di setiap petak
-- 🏰 **Labirin Pengetahuan** — Game labirin + soal Bahasa Inggris
+- 🎲 **Ular Tangga Edukasi** — Board game klasik + 118 soal, 11 kategori
+- 🏰 **Labirin Pengetahuan** — Game labirin + 70 soal Bahasa Inggris
 
 **188 soal** siap pakai, bisa ditambah sendiri.
 
@@ -115,6 +125,12 @@ EduPortal/
 ├── Labirin Bahasa Inggris/ ← Game Labirin
 └── shared/             ← Komponen bersama
 ```
+
+---
+
+## 📜 License
+
+MIT — Free to use for educational purposes.
 
 ---
 
