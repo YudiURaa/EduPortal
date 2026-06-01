@@ -61,7 +61,7 @@ class UI {
       '<div class="tag-row"><span class="tag">\u{1F3B2} Dadu 3D</span><span class="tag">\u{1F465} 1-4 Pemain</span><span class="tag">\u{1F4DD} 110 Soal</span><span class="tag">\u{1F4C2} 10 Kategori</span></div>' +
       '<div style="margin-top:28px"><button class="btn btn-primary" style="font-size:1.15rem;padding:16px 40px" onclick="audio.init();game.state.screen=\'setup\';ui.render()">\u{1F680} Mulai Petualangan</button></div>' +
       '<div style="margin-top:16px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">' +
-      '<button class="btn-ghost" onclick="ui.showSoalManager()">\u{1F4C2} Kelola Soal</button>' +
+      '<a href="../soal-manager.html" class="btn-ghost">\u{1F4C2} Kelola Soal</a>' +
       '<button class="btn-ghost" onclick="audio.init();audio.toggle();this.textContent=audio.enabled?\'\u{1F50A} ON\':\'\u{1F507} OFF\'">\u{1F50A} ON</button>' +
       '<a href="../index.html" class="btn-ghost">\u{1F3E0} Portal</a></div>' +
             '<div style="margin-top:16px;display:flex;gap:16px;justify-content:center;font-size:1.8rem">' +
@@ -72,30 +72,6 @@ class UI {
 
   }
 
-  showSoalManager() {
-    var overlay = document.createElement('div');
-    overlay.id = 'soal-manager-overlay';
-    overlay.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.8);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;overflow-y:auto';
-    
-    var inner = document.createElement('div');
-    inner.style.cssText = 'width:100%;max-width:500px;position:relative';
-    
-    var closeBtn = document.createElement('button');
-    closeBtn.textContent = '\u2715';
-    closeBtn.style.cssText = 'position:absolute;top:-10px;right:-10px;background:#e74c3c;color:#fff;border:none;border-radius:50%;width:32px;height:32px;font-size:1.1rem;cursor:pointer;z-index:10';
-    closeBtn.onclick = function() { overlay.remove(); };
-    
-    var container = document.createElement('div');
-    container.id = 'soal-uploader-container';
-    
-    inner.appendChild(closeBtn);
-    inner.appendChild(container);
-    overlay.appendChild(inner);
-    document.body.appendChild(overlay);
-    
-    // Mount uploader
-    questionManager.mountUploader(container);
-  }
 
   renderSetup() {
     var numBtns = '';
