@@ -622,6 +622,32 @@
     gap: 1px;
   }
 
+  /* Bottom bar - stack on small phones */
+  .board-bottom {
+    gap: 8px;
+    padding: 4px 8px;
+  }
+
+  .turn-info {
+    font-size: 0.8rem;
+  }
+
+  .turn-info .turn-char {
+    font-size: 1.3rem;
+  }
+
+  .roll-main-btn {
+    padding: 8px 20px;
+    font-size: 0.9rem;
+  }
+
+  /* Hide projector elements on mobile */
+  .projector-toggle,
+  .projector-scorebar,
+  .projector-hints {
+    display: none !important;
+  }
+
   .board-cell .cell-number {
     font-size: 0.45rem;
     top: 1px;

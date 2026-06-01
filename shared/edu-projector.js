@@ -43,10 +43,20 @@ var EduProjector = (function() {
   function _createToggleButton() {
     _toggleEl = document.createElement('button');
     _toggleEl.className = 'projector-toggle';
+    _toggleEl.setAttribute('data-projector-toggle', 'true');
     _toggleEl.innerHTML = _active ? '📺 Projector ON' : '📺 Projector';
     _toggleEl.onclick = toggle;
     _toggleEl.title = 'Toggle Projector Mode (F11)';
+    // Hide on mobile — projector is for classroom/big screens
+    if (_isMobile()) {
+      _toggleEl.style.display = 'none';
+      return;
+    }
     document.body.appendChild(_toggleEl);
+  }
+
+  function _isMobile() {
+    return window.innerWidth <= 768 || /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
   }
 
   function _createShortcutHints() {

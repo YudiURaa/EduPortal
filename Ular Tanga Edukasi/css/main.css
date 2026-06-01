@@ -220,10 +220,56 @@ h1, h2, h3, .font-display {
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .screen { padding: 12px; }
+  
+  /* Hide projector toggle on mobile */
+  .projector-toggle,
+  [data-projector-toggle] {
+    display: none !important;
+  }
+  
+  /* Hide projector scoreboard bar on mobile */
+  .projector-scorebar {
+    display: none !important;
+  }
 }
 
 @media (max-width: 480px) {
   .screen { padding: 8px; }
+  
+  /* Home screen - compact layout */
+  .screen-inner h1 {
+    font-size: 2rem !important;
+  }
+  
+  .screen-inner .float-anim {
+    font-size: 3rem !important;
+  }
+  
+  .tag-row {
+    gap: 6px;
+    margin: 12px 0;
+  }
+  
+  .tag {
+    padding: 6px 10px;
+    font-size: 0.7rem;
+  }
+  
+  /* Buttons - smaller on mobile */
+  .btn-primary {
+    padding: 12px 28px;
+    font-size: 0.95rem;
+  }
+  
+  .btn-ghost {
+    padding: 8px 14px;
+    font-size: 0.78rem;
+  }
+  
+  /* Hide decorative emoji row on very small screens */
+  .screen-inner > div:last-child .float-anim {
+    font-size: 1.2rem !important;
+  }
 }
 
 /* Keyboard focus styles */
