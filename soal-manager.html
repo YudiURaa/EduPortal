@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kelola Soal - EduPortal</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Fredoka:wght@500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--primary:#6c5ce7;--primary-light:#a29bfe;--bg-dark:#0a0a14;--bg-card:#14142a;--bg-card-hover:#1a1a35;--border:#2a2a4a;--text:#e2e2f0;--text-muted:#8888aa;--success:#00b894;--danger:#e74c3c;--warning:#fdcb6e;--radius:12px}
+body{font-family:'Nunito',sans-serif;background:var(--bg-dark);color:var(--text);min-height:100vh}
+a{color:var(--primary-light);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.topbar{position:sticky;top:0;z-index:100;background:rgba(10,10,20,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:12px 24px;display:flex;align-items:center;gap:16px}
+.topbar .back{font-size:20px;cursor:pointer;display:flex;align-items:center;gap:6px;font-weight:700}
+.topbar .back span{font-size:14px;color:var(--text-muted)}
+.topbar h1{font-family:'Fredoka',sans-serif;font-size:20px;flex:1}
+.topbar h1 .icon{margin-right:6px}
+
+.container{max-width:900px;margin:0 auto;padding:24px 16px 80px}
+
+.msg{padding:12px 16px;border-radius:var(--radius);margin-bottom:16px;font-weight:600;font-size:14px;display:none;animation:fadeIn .3s}
+.msg.success{display:block;background:rgba(0,184,148,.15);border:1px solid var(--success);color:var(--success)}
+.msg.error{display:block;background:rgba(231,76,60,.15);border:1px solid var(--danger);color:var(--danger)}
+
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:16px;transition:border-color .2s}
+.card:hover{border-color:var(--primary)}
+.card-head{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.card-head .icon{font-size:32px}
+.card-head .info{flex:1}
+.card-head .info h2{font-family:'Fredoka',sans-serif;font-size:18px;margin-bottom:2px}
+.card-head .info .meta{font-size:13px;color:var(--text-muted)}
+
+.stats-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.stat{background:rgba(108,92,231,.1);border:1px solid rgba(108,92,231,.2);border-radius:8px;padding:8px 14px;font-size:13px;font-weight:600}
+.stat b{color:var(--primary-light)}
+
+.badge{display:inline-block;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:700;margin-right:4px}
+.badge.easy{background:rgba(0,184,148,.2);color:#00b894}
+.badge.medium{background:rgba(253,203,110,.2);color:#fdcb6e}
+.badge.hard{background:rgba(231,76,60,.2);color:#e74c3c}
+.badge.custom{background:rgba(108,92,231,.2);color:var(--primary-light)}
+.badge.default{background:rgba(136,136,170,.15);color:var(--text-muted)}
+
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;border:1px solid var(--border);background:var(--bg-card-hover);color:var(--text);font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s}
+.btn:hover{border-color:var(--primary);background:rgba(108,92,231,.15)}
+.btn.danger{border-color:rgba(231,76,60,.3);color:var(--danger)}
+.btn.danger:hover{background:rgba(231,76,60,.15)}
+.btn.primary{border-color:var(--primary);color:var(--primary-light)}
+.btn.primary:hover{background:rgba(108,92,231,.2)}
+input[type=file]{display:none}
+
+.empty{text-align:center;padding:60px 20px;color:var(--text-muted)}
+.empty .emoji{font-size:48px;margin-bottom:12px}
+
+@keyframes fadeIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:480px){.card-head .icon{font-size:24px}.card-head .info h2{font-size:15px}.actions{flex-direction:column}.actions .btn{width:100%;justify-content:center}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <a href="index.html" class="back">🏠 <span>Kembali</span></a>
+  <h1><span class="icon">📋</span>Kelola Soal</h1>
+</div>
+<div class="container">
+  <div id="msg" class="msg"></div>
+  <div id="games-list"></div>
+</div>
+
+<script>
+const GAMES = [
+  {
+    id: 'ular-tangga-edukasi',
+    name: 'Ular Tangga Edukasi',
+    icon: '🎲',
+    path: 'Ular Tanga Edukasi/',
+    desc: 'Game ular tangga dengan soal edukasi'
+  },
+  {
+    id: 'labirin-bahasa-inggris',
+    name: 'Labirin Bahasa Inggris',
+    icon: '🔤',
+    path: 'Labirin Bahasa Inggris/',
+    desc: 'Labirin belajar bahasa Inggris'
+  }
+];
+
+function showMsg(text, type) {
+  const el = document.getElementById('msg');
+  el.textContent = text;
+  el.className = 'msg ' + type;
+  setTimeout(() => el.className = 'msg', 4000);
+}
+
+function getSoalData(key) {
+  try {
+    const raw = localStorage.getItem(key);
+    if (!raw) return null;
+    return JSON.parse(raw);
+  } catch { return null; }
+}
+
+function countSoal(data) {
+  let total = 0, easy = 0, medium = 0, hard = 0;
+  if (!data || !data.categories) return { total, easy, medium, hard, cats: 0 };
+  for (const c of data.categories) {
+    const n = c.soal ? c.soal.length : 0;
+    total += n;
+    if (c.level === 'easy') easy += n;
+    else if (c.level === 'medium') medium += n;
+    else if (c.level === 'hard') hard += n;
+  }
+  return { total, easy, medium, hard, cats: data.categories.length };
+}
+
+function renderGames() {
+  const container = document.getElementById('games-list');
+  container.innerHTML = '';
+
+  if (GAMES.length === 0) {
+    container.innerHTML = '<div class="empty"><div class="emoji">📭</div><p>Belum ada game terdaftar.</p></div>';
+    return;
+  }
+
+  for (const game of GAMES) {
+    const data = getSoalData(game.id);
+    const isCustom = !!data;
+    const stats = countSoal(data);
+
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="card-head">
+        <div class="icon">${game.icon}</div>
+        <div class="info">
+          <h2>${game.name}</h2>
+          <div class="meta">${game.desc}</div>
+        </div>
+        <span class="badge ${isCustom ? 'custom' : 'default'}">${isCustom ? '⚡ Custom' : '📦 Default'}</span>
+      </div>
+      <div class="stats-row">
+        <div class="stat">📁 Kategori: <b>${isCustom ? stats.cats : '—'}</b></div>
+        <div class="stat">📝 Soal: <b>${isCustom ? stats.total : '—'}</b></div>
+        ${isCustom && stats.total > 0 ? `
+          ${stats.easy ? `<div class="stat"><span class="badge easy">Easy</span> <b>${stats.easy}</b></div>` : ''}
+          ${stats.medium ? `<div class="stat"><span class="badge medium">Medium</span> <b>${stats.medium}</b></div>` : ''}
+          ${stats.hard ? `<div class="stat"><span class="badge hard">Hard</span> <b>${stats.hard}</b></div>` : ''}
+        ` : ''}
+      </div>
+      <div class="actions">
+        <label class="btn primary" for="file-${game.id}">📤 Upload Soal</label>
+        <input type="file" id="file-${game.id}" accept=".json" onchange="uploadSoal('${game.id}', this)">
+        <button class="btn" onclick="downloadTemplate('${game.id}','${game.name}')">📄 Template</button>
+        <button class="btn danger" onclick="resetSoal('${game.id}','${game.name}')" ${!isCustom ? 'disabled style="opacity:.4;pointer-events:none"' : ''}>🗑️ Reset</button>
+      </div>
+    `;
+    container.appendChild(card);
+  }
+}
+
+function uploadSoal(gameId, input) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const data = JSON.parse(e.target.result);
+      // Validate structure
+      if (!data.categories || !Array.isArray(data.categories)) {
+        throw new Error('Format salah: "categories" harus berupa array');
+      }
+      for (const cat of data.categories) {
+        if (!cat.id || !cat.name || !cat.soal || !Array.isArray(cat.soal)) {
+          throw new Error('Kategori harus punya id, name, dan soal[]');
+        }
+        for (const s of cat.soal) {
+          if (!s.q || !s.type) {
+            throw new Error('Soal harus punya q dan type');
+          }
+        }
+      }
+      localStorage.setItem(gameId, JSON.stringify(data));
+      const total = data.categories.reduce((a, c) => a + (c.soal ? c.soal.length : 0), 0);
+      showMsg(`✅ ${gameId}: ${data.categories.length} kategori, ${total} soal berhasil diupload!`, 'success');
+      renderGames();
+    } catch (err) {
+      showMsg(`❌ Gagal upload: ${err.message}`, 'error');
+    }
+    input.value = '';
+  };
+  reader.readAsText(file);
+}
+
+function downloadTemplate(gameId, gameName) {
+  const template = {
+    categories: [
+      {
+        id: "cat-1",
+        name: "Kategori Contoh",
+        icon: "📝",
+        level: "easy",
+        tags: ["contoh"],
+        soal: [
+          {
+            q: "Contoh pertanyaan?",
+            opts: ["Pilihan A", "Pilihan B", "Pilihan C", "Pilihan D"],
+            ans: 0,
+            exp: "Ini penjelasan jawaban",
+            type: "choice",
+            tags: ["contoh"]
+          },
+          {
+            q: "Contoh soal urutan?",
+            type: "sequence",
+            exp: "Ini penjelasan urutan",
+            steps: ["Langkah 1", "Langkah 2", "Langkah 3"]
+          }
+        ]
+      }
+    ]
+  };
+  const blob = new Blob([JSON.stringify(template, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `soal-template-${gameId}.json`;
+  a.click();
+  URL.revokeObjectURL(a.href);
+  showMsg(`📄 Template untuk "${gameName}" didownload.`, 'success');
+}
+
+function resetSoal(gameId, gameName) {
+  if (!confirm(`Reset soal "${gameName}" ke default?\nData custom akan dihapus.`)) return;
+  localStorage.removeItem(gameId);
+  showMsg(`🗑️ Soal "${gameName}" direset ke default.`, 'success');
+  renderGames();
+}
+
+renderGames();
+</script>
+</body>
+</html>
