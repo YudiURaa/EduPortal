@@ -59,21 +59,37 @@ Klik ganda file index.html → langsung jalan
 
 ## 📝 Cara Tambah Soal Sendiri
 
-Buka game → klik **📂 Upload Soal** → pilih file JSON.
+1. Buka portal → klik **📋 Kelola Soal** di navbar
+2. Pilih game yang mau di-edit
+3. Klik **📤 Upload soal.json** → pilih file JSON
+4. Soal custom tersimpan di browser (localStorage)
+
+Untuk reset ke default, klik **🔄 Reset** di halaman Kelola Soal.
+
+**Download template** tersedia di halaman Kelola Soal untuk format yang benar.
 
 Format soal:
 ```json
 {
   "categories": [
     {
+      "id": "matematika",
       "name": "Matematika",
       "icon": "🔢",
+      "level": "medium",
       "soal": [
         {
           "q": "Berapa hasil 5 + 3?",
           "opts": ["6", "7", "8", "9"],
           "ans": 2,
-          "exp": "5 + 3 = 8"
+          "exp": "5 + 3 = 8",
+          "type": "choice"
+        },
+        {
+          "q": "Urutkan langkah penyelesaian",
+          "type": "sequence",
+          "steps": ["Langkah 1", "Langkah 2", "Langkah 3"],
+          "exp": "Penjelasan"
         }
       ]
     }
@@ -83,9 +99,12 @@ Format soal:
 
 **Keterangan:**
 - `q` = pertanyaan
-- `opts` = pilihan jawaban (4 pilihan)
+- `type` = "choice" (pilihan ganda) atau "sequence" (urutan langkah)
+- `opts` = pilihan jawaban (4 pilihan, untuk type choice)
 - `ans` = nomor jawaban benar (mulai dari 0)
+- `steps` = langkah-langkah (untuk type sequence)
 - `exp` = penjelasan (muncul setelah jawab)
+- `level` = "easy", "medium", atau "hard"
 
 ---
 
@@ -106,10 +125,16 @@ Format soal:
 ✅ Ya, semua jalan offline. Cukup buka file.
 
 **Bisa dipakai di HP?**  
-Bisa, tapi lebih optimal di laptop + proyektor.
+✅ Ya! UI sudah responsive. Projector mode otomatis hidden di HP.
 
 **Soal bisa diedit?**  
-Bisa. Tinggal upload file JSON baru.
+Bisa. Klik 📋 Kelola Soal di portal → upload JSON baru per game.
+
+**Soal tersimpan di mana?**  
+Di localStorage browser. Hapus browser = reset ke default.
+
+**Bisa pakai proyektor?**  
+✅ Ya! Klik 📺 Projector (hanya muncul di layar besar). Font otomatis membesar.
 
 **Gratis?**  
 ✅ 100% gratis, open source (MIT License).
@@ -120,10 +145,11 @@ Bisa. Tinggal upload file JSON baru.
 
 ```
 EduPortal/
-├── index.html          ← Buka ini untuk mulai
-├── Ular Tanga Edukasi/ ← Game Ular Tangga
+├── index.html              ← Portal utama
+├── soal-manager.html       ← Kelola soal semua game
+├── Ular Tanga Edukasi/     ← Game Ular Tangga
 ├── Labirin Bahasa Inggris/ ← Game Labirin
-└── shared/             ← Komponen bersama
+└── shared/                 ← Komponen bersama
 ```
 
 ---

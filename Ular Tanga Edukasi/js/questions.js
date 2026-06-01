@@ -110,12 +110,6 @@ class QuestionManager {
     };
   }
 
-  // Mount uploader UI
-  mountUploader(container) {
-    if (this.loader && this.loader.mountUploader) {
-      this.loader.mountUploader(container);
-    }
-  }
 
   _shuffle(arr) {
     var a = arr.slice();
